@@ -1,10 +1,7 @@
-<p align="center">
-<a href="https://www.codacy.com/gh/peter-wachira/NewsApp-v2/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=peter-wachira/NewsApp-v2&amp;utm_campaign=Badge_Grade">
-<img src="https://app.codacy.com/project/badge/Grade/ab9ceccc4d0f425c8f60cddb9fe5828f"/>
-</a>
-</p>
-
 # NewsApp V2
+
+#### August 31st 2021
+#### By **peteHack**
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/260766d3d35843b3a925cc6b7bcecc23)](https://app.codacy.com/gh/peter-wachira/NewsApp-v2?utm_source=github.com&utm_medium=referral&utm_content=peter-wachira/NewsApp-v2&utm_campaign=Badge_Grade_Settings)
 
