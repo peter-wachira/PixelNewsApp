@@ -89,8 +89,6 @@ This app will make use of the following libraries:
 - [okhttp-logging-interceptor](https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor/README.md) - logging HTTP request related data.
 - [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines) - Library Support for coroutines
 - [Material Design](https://material.io/develop/android/docs/getting-started/) - build awesome beautiful UIs.🔥🔥
-- [Firebase](https://firebase.google.com/) - Backend As A Service for faster mobile development.
-  - [Crashylitics](https://firebase.google.com/docs/crashlytics) - Provide Realtime crash reports from users end.
 - [Like Button](https://github.com/jd-alexander/LikeButton) - Twitter's heart animation for Android
 - [Lottie](https://github.com/airbnb/lottie-android) - Render awesome After Effects animations natively on Android and iOS, Web, and React Native
 - [Glide](https://github.com/bumptech/glide) - Hassle-free image loading
