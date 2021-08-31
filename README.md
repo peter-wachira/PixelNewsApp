@@ -1,6 +1,6 @@
 <p align="center">
-<a href="https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=peter-wachira/TMDBClient&amp;utm_campaign=Badge_Grade">
-<img src="https://api.codacy.com/project/badge/Grade/1624b5e6304b4104a39e9ad7780404e5"/>
+<a href="https://www.codacy.com/gh/peter-wachira/NewsApp-v2/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=peter-wachira/NewsApp-v2&amp;utm_campaign=Badge_Grade">
+<img src="https://app.codacy.com/project/badge/Grade/ab9ceccc4d0f425c8f60cddb9fe5828f"/>
 </a>
 </p>
 
