@@ -10,7 +10,7 @@ clean architecture and MVVM.
 
 ## Prerequisite
 
-minSdkVersion -> 26
+minSdkVersion -> 23
 
 Gradle build system
 
