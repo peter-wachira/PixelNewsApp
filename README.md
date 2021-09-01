@@ -76,6 +76,8 @@ The data layer uses the recommended **Repository Pattern** to make the network c
 This app will make use of the following libraries:
 
 - [Jetpack](https://developer.android.com/jetpack)🚀
+- 
+  - [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) - Testing API endpoints 
   - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Manage UI data to survive configuration changes and is lifecycle-aware
   - [Data Binding](https://developer.android.com/topic/libraries/data-binding) - Declaratively bind observable data to UI elements
   - [Navigation](https://developer.android.com/guide/navigation/) - Handle everything needed for in-app navigation
