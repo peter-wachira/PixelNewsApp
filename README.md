@@ -76,8 +76,7 @@ The data layer uses the recommended **Repository Pattern** to make the network c
 This app will make use of the following libraries:
 
 - [Jetpack](https://developer.android.com/jetpack)🚀
-- 
-  - [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) - Testing API endpoints 
+
   - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Manage UI data to survive configuration changes and is lifecycle-aware
   - [Data Binding](https://developer.android.com/topic/libraries/data-binding) - Declaratively bind observable data to UI elements
   - [Navigation](https://developer.android.com/guide/navigation/) - Handle everything needed for in-app navigation
@@ -85,6 +84,8 @@ This app will make use of the following libraries:
   - [Room DB](https://developer.android.com/topic/libraries/architecture/room) - Fluent SQLite database access
   - [Paging](https://developer.android.com/topic/libraries/architecture/paging) - Load and display small chunks of data at a time
   - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Notify views when underlying database changes
+ 
+- [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) - Testing API endpoints 
 - [Retrofit](https://square.github.io/retrofit/) - type safe http client with coroutines support
 - [Gson](https://github.com/google/gson) - A Java serialization/deserialization library to convert Java Objects into JSON and back
 - [Dagger2](https://github.com/google/dagger) - A fast dependency injector for Android and Java.
