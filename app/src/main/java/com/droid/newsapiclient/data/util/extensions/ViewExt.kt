@@ -38,11 +38,6 @@ fun View.disable() {
     isEnabled = false
 }
 
-fun Context.toast(message: String, length: Int) {
-    Toast.makeText(this, message, length).show()
-}
-
-
 fun View.showSnackbar(message: String, length: Int) {
     val snackbar = Snackbar.make(this, message, length)
     snackbar.apply {
@@ -53,11 +48,6 @@ fun View.showSnackbar(message: String, length: Int) {
     }
 }
 
-internal fun View.setBackgroundTint(context: Context, color: Int) {
-    backgroundTintList = ColorStateList.valueOf(
-        ContextCompat.getColor(context, color)
-    )
-}
 
 
 fun View.showErrorSnackbar(message: String, length: Int) {
