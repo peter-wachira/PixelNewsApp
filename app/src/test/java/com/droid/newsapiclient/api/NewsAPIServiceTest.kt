@@ -55,6 +55,16 @@ class NewsAPIServiceTest {
         }
     }
 
+    @Test
+    fun getTopHeadlines_receivedResponse_correctSize(){
+        runBlocking {
+            enqueueMockResponse("newsresponse.json")
+            val responseBody =  service.getTopHeadlines("us",1).body()
+            val articleList  = responseBody!!.articles
+            assertThat(articleList.size).isEqualTo(20)
+
+        }
+    }
 
     @Test
     fun getTopHeadlines_receivedResponse_correctContent(){
