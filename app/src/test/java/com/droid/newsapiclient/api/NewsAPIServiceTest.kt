@@ -51,7 +51,7 @@ class NewsAPIServiceTest {
             val responseBody =  service.getTopHeadlines("us",1)
             val request = server.takeRequest()
             assertThat(responseBody).isNotNull()
-            assertThat(request.path).isEqualTo("v2/top-headlines?country=us&page=1&apiKey=2971bdff4e4041eaa48faa6601224dc7")
+            assertThat(request.path).isEqualTo("/v2/top-headlines?country=us&page=1&apiKey=2971bdff4e4041eaa48faa6601224dc7")
         }
     }
 
