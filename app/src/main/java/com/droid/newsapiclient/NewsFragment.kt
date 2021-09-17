@@ -5,15 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.droid.newsapiclient.data.util.extensions.hide
 import com.droid.newsapiclient.data.util.extensions.*
 import com.droid.newsapiclient.databinding.FragmentNewsBinding
 import com.droid.newsapiclient.presentation.adapter.NewsAdapter
 import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
-
+@AndroidEntryPoint
 class NewsFragment : Fragment() {
 
     private val page = 3
@@ -23,18 +24,14 @@ class NewsFragment : Fragment() {
     }
     private lateinit var viewModel: NewsViewModel
     private lateinit var newsAdapter: NewsAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        return binding.root
+                              savedInstanceState: Bundle?): View = binding.root
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
         initRecyclerView()
-        fetchNewsList()
 
     }
 
@@ -44,15 +41,18 @@ class NewsFragment : Fragment() {
             when (response) {
                 is com.droid.newsapiclient.data.util.Resource.Success -> {
                     binding.progressBar.hide()
+                    Timber.e("API Response:${response.data}")
                     response.data.let {
                         if (it != null) {
                             newsAdapter.submitList(it.articles.toMutableList())
+                            newsAdapter.notifyDataSetChanged()
                         }
                     }
                 }
                 is com.droid.newsapiclient.data.util.Resource.Error -> {
                     binding.progressBar.hide()
                     binding.root.showErrorSnackbar("An error occured: ${response.message}",Snackbar.LENGTH_LONG)
+                    Timber.e("API Error:${response.message}")
 
                 }
                 is com.droid.newsapiclient.data.util.Resource.Loading -> {
@@ -67,8 +67,9 @@ class NewsFragment : Fragment() {
         newsAdapter = NewsAdapter()
         binding.rvNews.apply {
             adapter = newsAdapter
-            layoutManager = LinearLayoutManager(activity)
         }
+
+        fetchNewsList()
     }
 
 
