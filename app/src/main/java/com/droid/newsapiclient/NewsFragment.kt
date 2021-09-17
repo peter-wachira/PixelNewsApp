@@ -5,53 +5,72 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.droid.newsapiclient.data.util.extensions.hide
+import com.droid.newsapiclient.data.util.extensions.*
+import com.droid.newsapiclient.databinding.FragmentNewsBinding
+import com.droid.newsapiclient.presentation.adapter.NewsAdapter
+import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
+import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [NewsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class NewsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val page = 3
+    private val country = "us"
+    private val binding: FragmentNewsBinding by lazy {
+        FragmentNewsBinding.inflate(layoutInflater)
     }
+    private lateinit var viewModel: NewsViewModel
+    private lateinit var newsAdapter: NewsAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news, container, false)
+                              savedInstanceState: Bundle?): View = binding.root
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = (activity as MainActivity).viewModel
+        initRecyclerView()
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment NewsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                NewsFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
+    private fun fetchNewsList() {
+        viewModel.getNewsHeadlines(country, page)
+        viewModel.newsHeadlines.observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is com.droid.newsapiclient.data.util.Resource.Success -> {
+                    binding.progressBar.hide()
+                    Timber.e("API Response:${response.data}")
+                    response.data.let {
+                        if (it != null) {
+                            newsAdapter.submitList(it.articles.toMutableList())
+                            newsAdapter.notifyDataSetChanged()
+                        }
                     }
                 }
+                is com.droid.newsapiclient.data.util.Resource.Error -> {
+                    binding.progressBar.hide()
+                    binding.root.showErrorSnackbar("An error occured: ${response.message}",Snackbar.LENGTH_LONG)
+                    Timber.e("API Error:${response.message}")
+
+                }
+                is com.droid.newsapiclient.data.util.Resource.Loading -> {
+                    binding.progressBar.show()
+
+                }
+            }
+        })
     }
+
+    private fun initRecyclerView() {
+        newsAdapter = NewsAdapter()
+        binding.rvNews.apply {
+            adapter = newsAdapter
+        }
+
+        fetchNewsList()
+    }
+
+
 }

@@ -5,15 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.droid.newsapiclient.domain.usecase.GetNewsHeadlinesUseCase
 
-class NewsViewModelFactory (
-        private val app: Application,
+class NewsViewModelFactory(
+        private val app:Application,
         private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase
-        ) : ViewModelProvider.Factory{
+):ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return  NewsViewModel(
-                    app,
-                    getNewsHeadlinesUseCase
-            ) as T
+        return NewsViewModel(
+                app,
+                getNewsHeadlinesUseCase
+        ) as T
     }
-
 }

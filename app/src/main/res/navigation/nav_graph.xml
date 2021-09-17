@@ -7,14 +7,22 @@
 
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.droid.newsapiclient.NewsFragment"
+        android:name= "com.droid.newsapiclient.NewsFragment"
         android:label="fragment_news"
-        tools:layout="@layout/fragment_news" />
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_newsFragment_to_infoFragment"
+            app:destination="@id/infoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/savedFragment"
         android:name="com.droid.newsapiclient.SavedFragment"
         android:label="fragment_saved"
-        tools:layout="@layout/fragment_saved" />
+        tools:layout="@layout/fragment_saved" >
+        <action
+            android:id="@+id/action_savedFragment_to_infoFragment"
+            app:destination="@id/infoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/infoFragment"
         android:name="com.droid.newsapiclient.InfoFragment"
