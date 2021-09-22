@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.droid.newsapiclient.databinding.ActivityMainBinding
+import com.droid.newsapiclient.presentation.adapter.NewsAdapter
 import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
 import com.droid.newsapiclient.presentation.viewmodel.NewsViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var  factory: NewsViewModelFactory
     lateinit var viewModel: NewsViewModel
     private lateinit var navController: NavController
+    @Inject
+    lateinit var newsAdapter: NewsAdapter
 
     private val binding: ActivityMainBinding by lazy {
            ActivityMainBinding.inflate(layoutInflater)
