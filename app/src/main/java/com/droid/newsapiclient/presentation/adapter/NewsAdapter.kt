@@ -1,5 +1,6 @@
 package com.droid.newsapiclient.presentation.adapter
 
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -11,10 +12,8 @@ import com.droid.newsapiclient.databinding.NewsListItemBinding
 
 class NewsAdapter : ListAdapter<Article,NewsAdapter.NewsViewHolder>(diffUtil) {
 
-
-
     inner class NewsViewHolder(
-            val binding: NewsListItemBinding
+        val binding: NewsListItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(article: Article) {
             with(binding) {
@@ -22,9 +21,9 @@ class NewsAdapter : ListAdapter<Article,NewsAdapter.NewsViewHolder>(diffUtil) {
                 tvDescription.text = article.description
                 tvPublishedAt.text = article.publishedAt
                 tvSource.text = article.source.name
-                Glide.with(binding.root.context)
-                        .load(article.urlToImage)
-                        .into(ivArticleImage)
+//                Glide.with(ivArticleImage.context)
+//                    .load(article.urlToImage)
+//                    .into(ivArticleImage)
             }
 
         }
@@ -54,4 +53,3 @@ val diffUtil = object : DiffUtil.ItemCallback<Article>(){
     }
 
 }
-

@@ -20,7 +20,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class NewsFragment : Fragment() {
 
-    private var page = 3
+    private var page = 2
     private val country = "us"
     private val binding: FragmentNewsBinding by lazy {
         FragmentNewsBinding.inflate(layoutInflater)
@@ -38,7 +38,6 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
-        newsAdapter = (activity as MainActivity).newsAdapter
         initRecyclerView()
 
     }

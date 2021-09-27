@@ -21,8 +21,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var  factory: NewsViewModelFactory
     lateinit var viewModel: NewsViewModel
     private lateinit var navController: NavController
-    @Inject
-    lateinit var newsAdapter: NewsAdapter
+
 
     private val binding: ActivityMainBinding by lazy {
            ActivityMainBinding.inflate(layoutInflater)
