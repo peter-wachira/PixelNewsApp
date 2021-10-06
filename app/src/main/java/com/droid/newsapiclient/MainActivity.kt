@@ -42,4 +42,5 @@ class MainActivity : AppCompatActivity() {
                 .get(NewsViewModel::class.java)    }
 
 
+
 }

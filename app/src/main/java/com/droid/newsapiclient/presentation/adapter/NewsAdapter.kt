@@ -38,7 +38,6 @@ class NewsAdapter : ListAdapter<Article,NewsAdapter.NewsViewHolder>(diffUtil) {
         return holder.bind(getItem(position))
     }
 
-
 }
 
 
