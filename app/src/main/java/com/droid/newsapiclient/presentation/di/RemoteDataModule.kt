@@ -6,11 +6,11 @@ import com.droid.newsapiclient.data.repository.datasourceimpl.NewsRemoteDataSour
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
 
-@InstallIn(SingletonComponent::class)
+@InstallIn(ApplicationComponent::class)
 @Module
 class RemoteDataModule {
     @Singleton

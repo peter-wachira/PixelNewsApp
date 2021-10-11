@@ -1,13 +1,13 @@
 package com.droid.newsapiclient.data.model
 
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class APIResponse(
-    @Json(name = "articles")
+        @SerializedName("articles")
     val articles: List<Article>,
-    @Json(name = "status")
+        @SerializedName("status")
     val status: String,
-    @Json(name = "totalResults")
+        @SerializedName("totalResults")
     val totalResults: Int
 )

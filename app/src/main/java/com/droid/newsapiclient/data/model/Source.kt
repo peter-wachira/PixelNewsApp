@@ -1,11 +1,11 @@
 package com.droid.newsapiclient.data.model
 
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Source(
-    @Json(name = "id")
-    val id: Any,
-    @Json(name = "name")
+    @SerializedName("id")
+    val id: String,
+    @SerializedName("name")
     val name: String
 )
