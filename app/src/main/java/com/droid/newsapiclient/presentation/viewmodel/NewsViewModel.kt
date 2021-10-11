@@ -17,26 +17,26 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class NewsViewModel(
-        private val app: Application,
+        private val app:Application,
         private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase
 ) : AndroidViewModel(app) {
-    val newsHeadlines: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
+    val newsHeadLines: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
+    fun getNewsHeadLines(country: String, page: Int) = viewModelScope.launch(Dispatchers.IO) {
+        newsHeadLines.postValue(Resource.Loading())
+        try{
+            if(isNetworkAvailable(app)) {
 
-    fun getNewsHeadlines(country: String, page: Int) = viewModelScope.launch(Dispatchers.IO) {
-        newsHeadlines.postValue(Resource.Loading())
-        try {
-
-
-            if (isNetworkAvailable(app)) {
                 val apiResult = getNewsHeadlinesUseCase.execute(country, page)
-                newsHeadlines.postValue(apiResult)
-            } else {
-                newsHeadlines.postValue(Resource.Error("Internet not Available"))
+                newsHeadLines.postValue(apiResult)
+            }else{
+                newsHeadLines.postValue(Resource.Error("Internet is not available"))
             }
-        }catch (e: Exception){
-            newsHeadlines.postValue(Resource.Error(e.message.toString()))
+
+        }catch (e:Exception){
+            newsHeadLines.postValue(Resource.Error(e.message.toString()))
         }
+
     }
 
 

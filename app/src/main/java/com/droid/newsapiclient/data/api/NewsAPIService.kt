@@ -15,8 +15,7 @@ interface NewsAPIService {
             @Query("page")
             page: Int,
             @Query("apiKey")
-            apiKey: String= BuildConfig.API_KEY): Response<APIResponse>
-
+            apiKey: String = BuildConfig.API_KEY): Response<APIResponse>
 
 
 }

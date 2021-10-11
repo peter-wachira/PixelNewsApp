@@ -1,23 +1,23 @@
 package com.droid.newsapiclient.data.model
 
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Article(
-    @Json(name = "author")
+        @SerializedName("author")
     val author: String,
-    @Json(name = "content")
+        @SerializedName("content")
     val content: String,
-    @Json(name = "description")
+        @SerializedName("description")
     val description: String,
-    @Json(name = "publishedAt")
+        @SerializedName("publishedAt")
     val publishedAt: String,
-    @Json(name = "source")
+        @SerializedName("source")
     val source: Source,
-    @Json(name = "title")
+        @SerializedName("title")
     val title: String,
-    @Json(name = "url")
+        @SerializedName("url")
     val url: String,
-    @Json(name = "urlToImage")
+        @SerializedName("urlToImage")
     val urlToImage: String
 )

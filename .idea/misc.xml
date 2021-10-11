@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/fragment_news.xml" value="0.23157894736842105" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/fragment_saved.xml" value="0.17198581560283688" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/news_list_item.xml" value="0.3342391304347826" />
+      </map>
+    </option>
+  </component>
+  <component name="EntryPointsManager">
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="com.bumptech.glide.annotation.GlideModule" />
+    </list>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>
