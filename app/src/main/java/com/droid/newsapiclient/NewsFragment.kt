@@ -7,18 +7,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.droid.newsapiclient.data.util.Resource
+import com.droid.newsapiclient.data.util.extensions.showErrorSnackbar
 import com.droid.newsapiclient.databinding.FragmentNewsBinding
 import com.droid.newsapiclient.presentation.adapter.NewsAdapter
 import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class NewsFragment : Fragment() {
-    private  lateinit var viewModel: NewsViewModel
+    private lateinit var viewModel: NewsViewModel
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var fragmentNewsBinding: FragmentNewsBinding
     private var country = "us"
@@ -38,53 +44,118 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fragmentNewsBinding = FragmentNewsBinding.bind(view)
-        viewModel= (activity as MainActivity).viewModel
-        newsAdapter= (activity as MainActivity).newsAdapter
+        viewModel = (activity as MainActivity).viewModel
+        newsAdapter = (activity as MainActivity).newsAdapter
 
         viewArticleDetails()
         initRecyclerView()
         viewNewsList()
+        setSearchView()
     }
 
     private fun viewArticleDetails() {
         newsAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply{
-                putSerializable("selected_article",it)
+            val bundle = Bundle().apply {
+                putSerializable("selected_article", it)
             }
             //pass bundle to info fragment
-            findNavController().navigate(R.id.action_newsFragment_to_infoFragment,bundle)
+            findNavController().navigate(R.id.action_newsFragment_to_infoFragment, bundle)
         }
     }
 
-    private fun viewNewsList() {
+    //search implementation
+    private fun setSearchView(){
+        fragmentNewsBinding.searchNews.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.searchNews("us",query.toString(),page)
+                viewSearchedNews()
+                return false
+            }
 
-        viewModel.getNewsHeadLines(country,page)
-        viewModel.newsHeadLines.observe(viewLifecycleOwner,{response->
-            when(response){
-                is Resource.Success ->{
+            override fun onQueryTextChange(newText: String?): Boolean {
+                MainScope().launch {
+                    delay(3000)
+                }
+                viewModel.searchNews("us",newText.toString(),page)
+                viewSearchedNews()
+                return false
+            }
+        })
 
+        //reset search after close
+        fragmentNewsBinding.searchNews.setOnCloseListener {
+            initRecyclerView()
+            viewNewsList()
+            false
+        }
+    }
+
+
+    fun viewSearchedNews() {
+        viewModel.searchedNews.observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let {
                         newsAdapter.differ.submitList(it.articles.toList())
                         when {
-                            it.totalResults%20 == 0 -> {
+                            it.totalResults % 20 == 0 -> {
                                 pages = it.totalResults / 20
                             }
                             else -> {
-                                pages = it.totalResults/20+1
+                                pages = it.totalResults / 20 + 1
                             }
                         }
                         isLastPage = page == pages
                     }
                 }
-                is Error->{
-                    hideProgressBar()
-                    response.message?.let {
-                        Toast.makeText(activity,"An error occurred : $it", Toast.LENGTH_LONG).show()
+                is Resource.Error -> {
+                    response.message.let {
+                        fragmentNewsBinding.root.showErrorSnackbar(
+                                "An error occurred : $it",
+                                Snackbar.LENGTH_LONG
+                        )
                     }
                 }
+            }
+        })
+    }
 
-                is Resource.Loading ->{
+    private fun viewNewsList() {
+        viewModel.getNewsHeadLines(country, page)
+        viewModel.newsHeadLines.observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is Resource.Success -> {
+
+                    hideProgressBar()
+                    response.data?.let {
+                        newsAdapter.differ.submitList(it.articles.toList())
+                        when {
+                            it.totalResults % 20 == 0 -> {
+                                pages = it.totalResults / 20
+                            }
+                            else -> {
+                                pages = it.totalResults / 20 + 1
+                            }
+                        }
+                        isLastPage = page == pages
+                    }
+                }
+                is Error -> {
+                    hideProgressBar()
+                    response.message?.let {
+
+                        fragmentNewsBinding.root.showErrorSnackbar(
+                                "An error occurred : $it",
+                                Snackbar.LENGTH_LONG
+                        )
+
+                    }
+
+                }
+
+
+                is Resource.Loading -> {
                     showProgressBar()
                 }
 
@@ -102,20 +173,20 @@ class NewsFragment : Fragment() {
 
     }
 
-    private fun showProgressBar(){
+    private fun showProgressBar() {
         isLoading = true
         fragmentNewsBinding.progressBar.visibility = View.VISIBLE
     }
 
-    private fun hideProgressBar(){
+    private fun hideProgressBar() {
         isLoading = false
         fragmentNewsBinding.progressBar.visibility = View.INVISIBLE
     }
 
-    private val onScrollListener = object : RecyclerView.OnScrollListener(){
+    private val onScrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
-            if(newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
+            if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
                 isScrolling = true
             }
 
@@ -128,11 +199,11 @@ class NewsFragment : Fragment() {
             val visibleItems = layoutManager.childCount
             val topPosition = layoutManager.findFirstVisibleItemPosition()
 
-            val hasReachedToEnd = topPosition+visibleItems >= sizeOfTheCurrentList
+            val hasReachedToEnd = topPosition + visibleItems >= sizeOfTheCurrentList
             val shouldPaginate = !isLoading && !isLastPage && hasReachedToEnd && isScrolling
-            if(shouldPaginate){
+            if (shouldPaginate) {
                 page++
-                viewModel.getNewsHeadLines(country,page)
+                viewModel.getNewsHeadLines(country, page)
                 isScrolling = false
 
             }
