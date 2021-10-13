@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
 
-    <androidx.fragment.app.FragmentContainerView
+    <fragment
         android:id="@+id/fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
@@ -23,5 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:background="@color/list_background"
+        app:itemIconTint="@color/list_text"
+        app:itemTextColor="@color/list_text"
         app:menu="@menu/bottom_menu" />
 </LinearLayout>
