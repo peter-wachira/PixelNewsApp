@@ -2,6 +2,7 @@ package com.droid.newsapiclient.presentation.di
 
 import com.droid.newsapiclient.domain.repository.NewsRepository
 import com.droid.newsapiclient.domain.usecase.GetNewsHeadlinesUseCase
+import com.droid.newsapiclient.domain.usecase.GetSearchNewsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,5 +17,11 @@ class UseCaseModule {
     fun provideGetNewsHeadlinesUseCaseModule(newsRepository: NewsRepository): GetNewsHeadlinesUseCase {
         return GetNewsHeadlinesUseCase(newsRepository)
     }
+    @Singleton
+    @Provides
+    fun provideGetSearchedNewsHeadlinesUseCaseModule(newsRepository: NewsRepository): GetSearchNewsUseCase{
+        return GetSearchNewsUseCase(newsRepository)
+    }
+
 }
 

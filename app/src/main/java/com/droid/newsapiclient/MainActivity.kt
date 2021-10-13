@@ -32,10 +32,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment
-        navController = navHostFragment.navController
-
+        binding.bnvNews.setupWithNavController(
+                fragment.findNavController()
+        )
 
         viewModel = ViewModelProvider(this,factory)
                 .get(NewsViewModel::class.java)
