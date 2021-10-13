@@ -3,11 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/appbar_gradient.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/background_curved_start.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/circular_primary_image_background.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/curved_outline.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/dotted_square.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/home_icon.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/ic_arrow_dropdown.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/ic_baseline_more_horiz_24.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.2222222222222222" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/ic_bell.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/ic_home.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/ic_no_variance.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/ic_timer.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/save_image.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/search_icon.xml" value="0.2222222222222222" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/success_check.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/text_circular_blue.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/font/roboto.xml" value="0.39947916666666666" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/fragment_info.xml" value="0.2563405797101449" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/fragment_news.xml" value="0.23157894736842105" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/fragment_saved.xml" value="0.17198581560283688" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/news_list_item.xml" value="0.3342391304347826" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/menu/bottom_menu.xml" value="0.3635897435897436" />
       </map>
     </option>
   </component>
