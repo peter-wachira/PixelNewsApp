@@ -21,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 
 class NewsFragment : Fragment() {
@@ -64,10 +65,10 @@ class NewsFragment : Fragment() {
     }
 
     //search implementation
-    private fun setSearchView(){
-        fragmentNewsBinding.searchNews.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+    private fun setSearchView() {
+        fragmentNewsBinding.searchNews.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.searchNews("us",query.toString(),page)
+                viewModel.searchNews("us", query.toString(), page)
                 viewSearchedNews()
                 return false
             }
@@ -76,7 +77,7 @@ class NewsFragment : Fragment() {
                 MainScope().launch {
                     delay(3000)
                 }
-                viewModel.searchNews("us",newText.toString(),page)
+                viewModel.searchNews("us", newText.toString(), page)
                 viewSearchedNews()
                 return false
             }
@@ -95,6 +96,7 @@ class NewsFragment : Fragment() {
         viewModel.searchedNews.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is Resource.Success -> {
+                    Timber.e("response:  ${response.data}")
                     hideProgressBar()
                     response.data?.let {
                         newsAdapter.differ.submitList(it.articles.toList())
@@ -125,7 +127,9 @@ class NewsFragment : Fragment() {
         viewModel.getNewsHeadLines(country, page)
         viewModel.newsHeadLines.observe(viewLifecycleOwner, { response ->
             when (response) {
+
                 is Resource.Success -> {
+                    Timber.e("response:  ${response.data}")
 
                     hideProgressBar()
                     response.data?.let {
