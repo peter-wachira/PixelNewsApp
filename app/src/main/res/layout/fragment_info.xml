@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/infoFragment"
-    tools:context=".InfoFragment">
+    tools:context=".presentation.ui.InfoFragment">
 
 
     <WebView

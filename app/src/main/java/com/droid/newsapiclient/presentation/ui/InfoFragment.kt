@@ -1,4 +1,4 @@
-package com.droid.newsapiclient
+package com.droid.newsapiclient.presentation.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.navigation.fragment.navArgs
+import com.droid.newsapiclient.R
 import com.droid.newsapiclient.databinding.FragmentInfoBinding
 
 
