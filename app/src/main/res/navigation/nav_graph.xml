@@ -15,7 +15,10 @@
             app:destination="@id/infoFragment" />
         <action
             android:id="@+id/action_newsFragment_to_searchNewsFragment"
-            app:destination="@id/searchNewsFragment" />
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_newsFragment_to_savedFragment"
+            app:destination="@id/savedFragment" />
     </fragment>
     <fragment
         android:id="@+id/savedFragment"
@@ -37,7 +40,7 @@
             app:argType="com.droid.newsapiclient.data.model.Article" />
     </fragment>
     <fragment
-        android:id="@+id/searchNewsFragment"
+        android:id="@+id/searchFragment"
         android:name="com.droid.newsapiclient.presentation.ui.SearchNewsFragment"
         android:label="fragment_search_news"
         tools:layout="@layout/fragment_search_news" />

@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -20,18 +21,19 @@
             android:layout_height="0dp"
             android:layout_weight="7"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@id/bnv_news"
+
+            app:layout_constraintBottom_toTopOf="@id/bottom_naviagtion"
             app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/nav_graph" />
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bnv_news"
+            android:id="@+id/bottom_naviagtion"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             app:backgroundTint="@android:color/white"
-            app:labelVisibilityMode="labeled"
+            app:labelVisibilityMode="unlabeled"
             app:elevation="8dp"
             app:itemIconTint="@color/bottom_nav_tint"
             app:itemTextColor="@color/bottom_nav_tint"
