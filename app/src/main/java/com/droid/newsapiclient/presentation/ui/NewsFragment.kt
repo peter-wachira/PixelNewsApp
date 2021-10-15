@@ -1,32 +1,33 @@
-package com.droid.newsapiclient
+package com.droid.newsapiclient.presentation.ui
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.droid.newsapiclient.R
 import com.droid.newsapiclient.data.util.Resource
 import com.droid.newsapiclient.data.util.extensions.showErrorSnackbar
 import com.droid.newsapiclient.databinding.FragmentNewsBinding
+import com.droid.newsapiclient.databinding.NewsFragmentLayoutBinding
 import com.droid.newsapiclient.presentation.adapter.NewsAdapter
 import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 
 class NewsFragment : Fragment() {
     private lateinit var viewModel: NewsViewModel
     private lateinit var newsAdapter: NewsAdapter
-    private lateinit var fragmentNewsBinding: FragmentNewsBinding
+    private lateinit var fragmentNewsBinding: NewsFragmentLayoutBinding
     private var country = "us"
     private var page = 1
     private var isScrolling = false
@@ -38,19 +39,19 @@ class NewsFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news, container, false)
+        return inflater.inflate(R.layout.news_fragment_layout, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fragmentNewsBinding = FragmentNewsBinding.bind(view)
+        fragmentNewsBinding = NewsFragmentLayoutBinding.bind(view)
         viewModel = (activity as MainActivity).viewModel
         newsAdapter = (activity as MainActivity).newsAdapter
 
         viewArticleDetails()
         initRecyclerView()
         viewNewsList()
-        setSearchView()
+        getBannerNews()
     }
 
     private fun viewArticleDetails() {
@@ -63,31 +64,32 @@ class NewsFragment : Fragment() {
         }
     }
 
-    //search implementation
-    private fun setSearchView(){
-        fragmentNewsBinding.searchNews.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.searchNews("us",query.toString(),page)
-                viewSearchedNews()
-                return false
-            }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                MainScope().launch {
-                    delay(3000)
+
+    private fun getBannerNews(){
+        viewModel.searchNews("us", "covid", page)
+        viewModel.searchedNews.observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is Resource.Success -> {
+                    Timber.e("response:  ${response.data}")
+                    hideProgressBar()
+                    response.data?.let {
+                        if ( it.articles.first().title.isNotEmpty()){
+                            fragmentNewsBinding.materialTextView2.text =   "Covid -19 News: \n ${it.articles.first().title}"
+                        }
+                    }
                 }
-                viewModel.searchNews("us",newText.toString(),page)
-                viewSearchedNews()
-                return false
+                is Resource.Error -> {
+                    response.message.let {
+                        fragmentNewsBinding.root.showErrorSnackbar(
+                                "An error occurred : $it",
+                                Snackbar.LENGTH_LONG
+                        )
+                    }
+                }
             }
         })
 
-        //reset search after close
-        fragmentNewsBinding.searchNews.setOnCloseListener {
-            initRecyclerView()
-            viewNewsList()
-            false
-        }
     }
 
 
@@ -95,6 +97,7 @@ class NewsFragment : Fragment() {
         viewModel.searchedNews.observe(viewLifecycleOwner, { response ->
             when (response) {
                 is Resource.Success -> {
+                    Timber.e("response:  ${response.data}")
                     hideProgressBar()
                     response.data?.let {
                         newsAdapter.differ.submitList(it.articles.toList())
@@ -125,7 +128,9 @@ class NewsFragment : Fragment() {
         viewModel.getNewsHeadLines(country, page)
         viewModel.newsHeadLines.observe(viewLifecycleOwner, { response ->
             when (response) {
+
                 is Resource.Success -> {
+                    Timber.e("response:  ${response.data}")
 
                     hideProgressBar()
                     response.data?.let {

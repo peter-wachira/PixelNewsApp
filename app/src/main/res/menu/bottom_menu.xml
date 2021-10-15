@@ -3,10 +3,25 @@
 
     <item
         android:id="@+id/newsFragment"
-        android:icon="@drawable/ic_baseline_live_tv_24"
-        android:title="News Headlines" />
+        android:icon="@drawable/home_icon"
+        android:title="Home" />
+
+
+    <item
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/search_icon"
+        android:title="Search" />
+
     <item
         android:id="@+id/savedFragment"
-        android:icon="@drawable/ic_baseline_save_24"
-        android:title="Saved News" />
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="Favorites"
+        />
+
+    <item
+        android:id="@+id/userStatsFragment"
+        android:icon="@drawable/ic_user_stats"
+        android:title="User Stats"
+        />
+
 </menu>

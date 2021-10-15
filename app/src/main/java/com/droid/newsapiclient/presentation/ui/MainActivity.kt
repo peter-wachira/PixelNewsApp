@@ -1,13 +1,12 @@
-package com.droid.newsapiclient
+package com.droid.newsapiclient.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.droid.newsapiclient.R
 import com.droid.newsapiclient.databinding.ActivityMainBinding
 import com.droid.newsapiclient.presentation.adapter.NewsAdapter
 import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
@@ -32,12 +31,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.bnvNews.setupWithNavController(
-                fragment.findNavController()
-        )
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment
+        navController = navHostFragment.navController
+        binding.bottomNaviagtion.setupWithNavController(navController)
+
+
 
         viewModel = ViewModelProvider(this,factory)
                 .get(NewsViewModel::class.java)
+
     }
 
 

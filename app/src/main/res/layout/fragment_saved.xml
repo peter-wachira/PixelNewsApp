@@ -5,7 +5,7 @@
     android:id="@+id/savedFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SavedFragment">
+    tools:context=".presentation.ui.SavedFragment">
 
 
     <com.google.android.material.textview.MaterialTextView
