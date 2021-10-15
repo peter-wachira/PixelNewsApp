@@ -52,7 +52,6 @@ class NewsFragment : Fragment() {
         initRecyclerView()
         viewNewsList()
         getBannerNews()
-//        setSearchView()
     }
 
     private fun viewArticleDetails() {
@@ -64,33 +63,6 @@ class NewsFragment : Fragment() {
             findNavController().navigate(R.id.action_newsFragment_to_infoFragment, bundle)
         }
     }
-
-//    //search implementation
-//    private fun setSearchView() {
-//        fragmentNewsBinding.searchNews.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                viewModel.searchNews("us", query.toString(), page)
-//                viewSearchedNews()
-//                return false
-//            }
-//
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                MainScope().launch {
-//                    delay(3000)
-//                }
-//                viewModel.searchNews("us", newText.toString(), page)
-//                viewSearchedNews()
-//                return false
-//            }
-//        })
-//
-//        //reset search after close
-//        fragmentNewsBinding.searchNews.setOnCloseListener {
-//            initRecyclerView()
-//            viewNewsList()
-//            false
-//        }
-//    }
 
 
 
