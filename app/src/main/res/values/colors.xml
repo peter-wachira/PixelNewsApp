@@ -1,10 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#3294C8</color>
+    <color name="colorPrimaryDark">#0077B6</color>
+    <color name="colorAccent">#6DB4DA</color>
+
+    <color name="yellowLight">#8BF6DD62</color>
+    <color name="chartCompletedColor">#44D88E</color>
+    <color name="chartInCompletedColor">#D84465</color>
+
+    <color name="colorTextBlackSecondary">#A63C3B3B</color>
+    <color name="colorTextBlackPrimary">#636363</color>
+    <color name="gray">#959191</color>
+    <color name="transparent_blue">#1A1D3F</color>
+    <color name="color_text_ongoing_order">#62E291</color>
+    <color name="textInputBoxColor">#E0E0E0</color>
+    <color name="colorGreen">#1EBC44</color>
+    <color name="lightGray">#E4E3E3</color>
+    <color name="white">#FFFFFF</color>
+    <color name="pink">#FFA7A7</color>
+
+    <color name="cloudWhite">#D1D2D9</color>
+    <color name="orange">#EED138</color>
+    <color name="green">#39AD36</color>
+    <color name="red">#FF0404</color>
+    <!--    Key naming based on Designs-->
+    <color name="light_blue_4">#F8F8F9</color>
+    <color name="mid_blue_2">#D1D2D9</color>
+    <!--    Request statuses-->
+    <!--    Enroute  and Planned statuses-->
+    <color name="success_pale_green">#3341A15E</color>
+    <color name="success_green">#41A15E</color>
+    <!--    Pending-->
+    <color name="pale_purple">#33484A65</color>
+    <color name="success_purle">#7B83B6</color>
+    <!--Rejected-->
+    <color name="error_orange">#F1A40F</color>
+    <color name="pale_error_orange">#33F1A40F</color>
+
+    <color name="list_text">#FFFFFFFF</color>
+    <color name="list_background">#2F2C2A</color>
+    <color name="layout_background">#000000</color>
 </resources>
