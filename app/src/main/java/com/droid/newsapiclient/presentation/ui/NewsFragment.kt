@@ -103,7 +103,7 @@ class NewsFragment : Fragment() {
                     hideProgressBar()
                     response.data?.let {
                         if ( it.articles.first().title.isNotEmpty()){
-                            fragmentNewsBinding.materialTextView2.text = it.articles.first().title
+                            fragmentNewsBinding.materialTextView2.text =   "Covid -19 News: \n ${it.articles.first().title}"
                         }
                     }
                 }

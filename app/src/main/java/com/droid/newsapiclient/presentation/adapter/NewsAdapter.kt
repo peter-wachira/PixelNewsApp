@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.droid.newsapiclient.data.model.Article
+import com.droid.newsapiclient.data.util.extensions.convertToHoursMins
+import com.droid.newsapiclient.data.util.extensions.nowToHrsMins
+import com.droid.newsapiclient.data.util.extensions.timePublished
 import com.droid.newsapiclient.databinding.NewsItemLayoutBinding
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
@@ -20,7 +23,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
             with(binding) {
 
                 textView8.text = article.title
-                textView6.text = article.publishedAt
+                textView6.text =  convertToHoursMins(article.publishedAt)
                 textView7.text = article.source.name
                 Glide.with(binding.imageView3.context).load(article.urlToImage).into(binding.imageView3)
 
@@ -31,6 +34,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val view = NewsItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)

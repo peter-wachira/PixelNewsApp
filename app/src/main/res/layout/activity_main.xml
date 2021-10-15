@@ -34,7 +34,6 @@
             android:layout_weight="1"
             app:backgroundTint="@android:color/white"
             app:labelVisibilityMode="unlabeled"
-            app:elevation="8dp"
             app:itemIconTint="@color/bottom_nav_tint"
             app:itemTextColor="@color/bottom_nav_tint"
             app:layout_constraintBottom_toBottomOf="parent"

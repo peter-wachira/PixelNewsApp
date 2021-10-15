@@ -47,6 +47,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/white"
         android:elevation="4dp"
         app:cardCornerRadius="8dp"
@@ -66,23 +67,17 @@
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Covid-19 News : See the latest coverage about Covid-19"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:padding="4dp"
+                android:gravity="center_horizontal"
+                tools:text="Covid-19 News : See the latest coverage about Covid-19 fdfsf ffsdfdsf sdsdfdsf sfdsfsd fsfeww"
                 android:textColor="@color/colorTextBlackSecondary"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:drawableRight="@drawable/ic_chevron_right"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_chevron_right"
-                app:layout_constraintBottom_toBottomOf="@+id/materialTextView2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/materialTextView2" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -108,8 +103,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Top 5 news for you today"
+        android:textColor="@color/colorPrimary"
         android:layout_marginStart="16dp"
-        android:textColor="@color/colorTextBlackSecondary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -167,7 +162,7 @@
 
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
