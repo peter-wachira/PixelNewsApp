@@ -1,14 +1,11 @@
 package com.droid.newsapiclient.presentation.ui
 
 import android.os.Bundle
-import android.os.StrictMode
-import android.os.StrictMode.ThreadPolicy
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.droid.newsapiclient.BuildConfig
 import com.droid.newsapiclient.R
 import com.droid.newsapiclient.databinding.ActivityMainBinding
 import com.droid.newsapiclient.presentation.adapter.NewsAdapter
