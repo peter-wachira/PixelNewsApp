@@ -1,18 +1,20 @@
 package com.droid.newsapiclient.presentation.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.StrictMode
+import android.os.StrictMode.ThreadPolicy
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.droid.newsapiclient.BuildConfig
 import com.droid.newsapiclient.R
 import com.droid.newsapiclient.databinding.ActivityMainBinding
 import com.droid.newsapiclient.presentation.adapter.NewsAdapter
 import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
 import com.droid.newsapiclient.presentation.viewmodel.NewsViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 
@@ -20,6 +22,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var factory: NewsViewModelFactory
+
     @Inject
     lateinit var newsAdapter: NewsAdapter
     lateinit var viewModel: NewsViewModel
@@ -38,10 +41,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        viewModel = ViewModelProvider(this,factory)
+        viewModel = ViewModelProvider(this, factory)
                 .get(NewsViewModel::class.java)
 
     }
+
+
 
 
 }
