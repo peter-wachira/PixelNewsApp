@@ -10,9 +10,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droid.newsapiclient.data.model.APIResponse
+import com.droid.newsapiclient.data.model.Article
 import com.droid.newsapiclient.data.util.Resource
 import com.droid.newsapiclient.domain.usecase.GetNewsHeadlinesUseCase
 import com.droid.newsapiclient.domain.usecase.GetSearchNewsUseCase
+import com.droid.newsapiclient.domain.usecase.SaveNewsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -20,7 +22,8 @@ import java.lang.Exception
 class NewsViewModel(
         private val app: Application,
         private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
-        private val getSearchNewsUseCase: GetSearchNewsUseCase
+        private val getSearchNewsUseCase: GetSearchNewsUseCase,
+        private val saveNewsUseCase: SaveNewsUseCase
 ) : AndroidViewModel(app) {
     val newsHeadLines: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
@@ -63,6 +66,10 @@ class NewsViewModel(
     }
 
 
+    //local data
+    fun saveArticle(article: Article)= viewModelScope.launch {
+        saveNewsUseCase.execute(article)
+    }
 
     private fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
