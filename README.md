@@ -5,6 +5,11 @@
 </p>
 
 # PixelNews
+#### August 31st 2021
+#### By **peteHack**
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/260766d3d35843b3a925cc6b7bcecc23)](https://app.codacy.com/gh/peter-wachira/NewsApp-v2?utm_source=github.com&utm_medium=referral&utm_content=peter-wachira/NewsApp-v2&utm_campaign=Badge_Grade_Settings)
+
 This is my simple app demonstration the use of clean architecture. It gets data from the [News API](https://newsapi.org/) and entertains the user using
 clean architecture and MVVM.
 
@@ -12,7 +17,7 @@ clean architecture and MVVM.
 
 ## Prerequisite
 
-minSdkVersion -> 26
+minSdkVersion -> 23
 
 Gradle build system
 
@@ -78,6 +83,7 @@ The data layer uses the recommended **Repository Pattern** to make the network c
 This app will make use of the following libraries:
 
 - [Jetpack](https://developer.android.com/jetpack)🚀
+
   - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Manage UI data to survive configuration changes and is lifecycle-aware
   - [Data Binding](https://developer.android.com/topic/libraries/data-binding) - Declaratively bind observable data to UI elements
   - [Navigation](https://developer.android.com/guide/navigation/) - Handle everything needed for in-app navigation
@@ -85,6 +91,8 @@ This app will make use of the following libraries:
   - [Room DB](https://developer.android.com/topic/libraries/architecture/room) - Fluent SQLite database access
   - [Paging](https://developer.android.com/topic/libraries/architecture/paging) - Load and display small chunks of data at a time
   - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Notify views when underlying database changes
+ 
+- [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver) - Testing API endpoints 
 - [Retrofit](https://square.github.io/retrofit/) - type safe http client with coroutines support
 - [Gson](https://github.com/google/gson) - A Java serialization/deserialization library to convert Java Objects into JSON and back
 - [Dagger2](https://github.com/google/dagger) - A fast dependency injector for Android and Java.
@@ -92,7 +100,7 @@ This app will make use of the following libraries:
 - [kotlinx.coroutines](https://github.com/Kotlin/kotlinx.coroutines) - Library Support for coroutines
 - [Material Design](https://material.io/develop/android/docs/getting-started/) - build awesome beautiful UIs.🔥🔥
 - [Firebase](https://firebase.google.com/) - Backend As A Service for faster mobile development.
-  - [Crashylitics](https://firebase.google.com/docs/crashlytics) - Provide Realtime crash reports from users end.
+- [Crashylitics](https://firebase.google.com/docs/crashlytics) - Provide Realtime crash reports from users end.
 - [Glide](https://github.com/bumptech/glide) - Hassle-free image loading
 - [Timber](https://github.com/JakeWharton/timber) - A logger with a small, extensible API which provides utility on top of Android's normal Log class.
 
@@ -101,7 +109,8 @@ This app will make use of the following libraries:
 
 ### Known Bugs
 
-- As at the time this project was made, testing and UIs was not a major concern 
+- As at the time this project was made, testing and UIs was not a major concern, the test coverage is not 100% 
+- The project is currently being maintained any. Contributions are most welcome if you would like to add more modules to the project, you can reach me through my [Contacts](#Contacts) below.
 - Thanks for understanding.
 
 
