@@ -14,11 +14,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class NewsAPIServiceTest {
-    private lateinit var  service: NewsAPIService
-    private lateinit var  server: MockWebServer
+    private lateinit var service: NewsAPIService
+    private lateinit var server: MockWebServer
 
     @Before
-    fun setUp(){
+    fun setUp() {
         server = MockWebServer()
         service = Retrofit.Builder()
                 .baseUrl(server.url(""))
@@ -28,13 +28,13 @@ class NewsAPIServiceTest {
     }
 
     @After
-    fun tearDown(){
+    fun tearDown() {
         server.shutdown()
     }
 
-    private  fun enqueueMockResponse(
+    private fun enqueueMockResponse(
             fileName: String
-    ){
+    ) {
         val inputStream = javaClass.classLoader!!.getResourceAsStream(fileName)
         val source = inputStream.source().buffer()
         val mockResponse = MockResponse()
@@ -44,14 +44,11 @@ class NewsAPIServiceTest {
     }
 
 
-
-
-
     @Test
-    fun getTopHeadlines_sentRequest_receivedExpected(){
+    fun getTopHeadlines_sentRequest_receivedExpected() {
         runBlocking {
             enqueueMockResponse("newsresponse.json")
-            val responseBody =  service.getTopHeadlines("us",1)
+            val responseBody = service.getTopHeadlines("us", 1)
 
             val request = server.takeRequest()
             assertThat(responseBody).isNotNull()
@@ -60,30 +57,28 @@ class NewsAPIServiceTest {
     }
 
     @Test
-    fun getTopHeadlines_receivedResponse_correctSize(){
+    fun getTopHeadlines_receivedResponse_correctSize() {
         runBlocking {
             enqueueMockResponse("newsresponse.json")
-            val responseBody =  service.getTopHeadlines("us",1).body()
-            val articleList  = responseBody!!.articles
+            val responseBody = service.getTopHeadlines("us", 1).body()
+            val articleList = responseBody!!.articles
             assertThat(articleList.size).isEqualTo(20)
 
         }
     }
 
     @Test
-    fun getTopHeadlines_receivedResponse_correctContent(){
+    fun getTopHeadlines_receivedResponse_correctContent() {
         runBlocking {
             enqueueMockResponse("newsresponse.json")
-            val responseBody =  service.getTopHeadlines("us",1).body()
-            val articleList  = responseBody!!.articles
+            val responseBody = service.getTopHeadlines("us", 1).body()
+            val articleList = responseBody!!.articles
             val article = articleList[0]
             assertThat(article.author).isEqualTo("Jacob Kastrenakes")
             assertThat(article.url).isEqualTo("https://www.theverge.com/2021/9/1/22650896/hue-spotify-music-sync-integration")
             assertThat(article.publishedAt).isEqualTo("2021-09-01T07:30:00Z")
         }
     }
-
-
 
 
 }

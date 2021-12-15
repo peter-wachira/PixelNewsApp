@@ -8,8 +8,6 @@
     tools:context=".presentation.ui.SearchNewsFragment">
 
 
-
-
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/materialTextView"
         style="@style/TextAppearance.MaterialComponents.Headline5"
@@ -27,8 +25,6 @@
     </com.google.android.material.textview.MaterialTextView>
 
 
-
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="match_parent"
@@ -44,23 +40,23 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:background="@drawable/curved_outline"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/curved_outline">
 
 
             <SearchView
                 android:id="@+id/searchNews"
                 android:layout_width="0dp"
-                android:queryHint="Search Here"
-                android:background="#d1d2d9"
                 android:layout_height="wrap_content"
-
+                android:background="#d1d2d9"
                 android:backgroundTint="#DADBE0"
+
+                android:queryHint="Search Here"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:searchIcon="@drawable/ic_baseline_search_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:searchIcon="@drawable/ic_baseline_search_24" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -70,14 +66,14 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView3"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        style="@style/TextAppearance.AppCompat.Title"
 
-        android:text="News for you today"
         android:fontFamily="@font/roboto"
+        android:text="News for you today"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
@@ -86,11 +82,11 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Top 5 news for you today"
         android:layout_marginStart="16dp"
-
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto"
+
+        android:text="Top 5 news for you today"
         android:textColor="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -113,9 +109,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:padding="4dp"
         android:text="Dream home design inspiration for you"
         android:textColor="@android:color/black"
-        android:padding="4dp"
         app:fontFamily="@font/roboto"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
@@ -129,24 +125,24 @@
         android:layout_marginTop="4dp"
         android:fontFamily="@font/roboto"
         android:padding="4dp"
+        android:text="3 Hours"
         android:textColor="@color/colorTextBlackSecondary"
         app:layout_constraintStart_toStartOf="@+id/textView5"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        android:text="3 Hours" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView7"
+        style="@style/TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:drawableStart="@drawable/ic_eclipse"
+        android:drawablePadding="4dp"
+        android:fontFamily="@font/roboto"
         android:padding="4dp"
         android:text="Architect"
-        style="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/colorTextBlackSecondary"
-        android:layout_marginStart="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
-        android:drawableStart="@drawable/ic_eclipse"
-        android:fontFamily="@font/roboto"
-        android:drawablePadding="4dp"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="@+id/textView6" />
 
@@ -155,12 +151,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        tools:listitem="@layout/news_item_layout"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        tools:listitem="@layout/news_item_layout" />
 
 
     <ProgressBar

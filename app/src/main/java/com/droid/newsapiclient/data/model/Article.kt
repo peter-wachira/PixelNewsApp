@@ -29,4 +29,4 @@ data class Article(
         val url: String?,
         @SerializedName("urlToImage")
         val urlToImage: String?
-): Serializable
+) : Serializable

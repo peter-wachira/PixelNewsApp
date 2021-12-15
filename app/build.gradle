@@ -35,7 +35,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 }
@@ -78,7 +78,6 @@ dependencies {
 
     // Debug - for debug builds only
     implementation("com.jakewharton.timber:timber:5.0.1")
-
 
 
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"

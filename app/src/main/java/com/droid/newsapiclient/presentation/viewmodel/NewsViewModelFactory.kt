@@ -8,11 +8,11 @@ import com.droid.newsapiclient.domain.usecase.GetSearchNewsUseCase
 import com.droid.newsapiclient.domain.usecase.SaveNewsUseCase
 
 class NewsViewModelFactory(
-        private val app:Application,
+        private val app: Application,
         private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
         private val getSearchNewsUseCase: GetSearchNewsUseCase,
         private val saveNewsUseCase: SaveNewsUseCase
-):ViewModelProvider.Factory {
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return NewsViewModel(
                 app,

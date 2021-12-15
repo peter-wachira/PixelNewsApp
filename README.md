@@ -8,8 +8,6 @@
 #### August 31st 2021
 #### By **peteHack**
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/260766d3d35843b3a925cc6b7bcecc23)](https://app.codacy.com/gh/peter-wachira/NewsApp-v2?utm_source=github.com&utm_medium=referral&utm_content=peter-wachira/NewsApp-v2&utm_campaign=Badge_Grade_Settings)
-
 This is my simple app demonstration the use of clean architecture. It gets data from the [News API](https://newsapi.org/) and entertains the user using
 clean architecture and MVVM.
 
