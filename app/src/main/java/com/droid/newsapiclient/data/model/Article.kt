@@ -1,24 +1,32 @@
 package com.droid.newsapiclient.data.model
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
+
+@Entity(
+        tableName = "articles"
+)
 data class Article(
+        @PrimaryKey
+        val id: Int? = null,
         @SerializedName("author")
-    val author: String,
+        val author: String?,
         @SerializedName("content")
-    val content: String,
+        val content: String?,
         @SerializedName("description")
-    val description: String,
+        val description: String?,
         @SerializedName("publishedAt")
-    val publishedAt: String,
+        val publishedAt: String?,
         @SerializedName("source")
-    val source: Source,
+        val source: Source?,
         @SerializedName("title")
-    val title: String,
+        val title: String?,
         @SerializedName("url")
-    val url: String,
+        val url: String?,
         @SerializedName("urlToImage")
-    val urlToImage: String
+        val urlToImage: String?
 ): Serializable

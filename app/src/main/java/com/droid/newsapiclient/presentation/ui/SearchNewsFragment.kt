@@ -9,16 +9,15 @@ import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.droid.newsapiclient.R
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.droid.newsapiclient.R
 import com.droid.newsapiclient.data.util.Resource
 import com.droid.newsapiclient.data.util.extensions.convertToHoursMins
 import com.droid.newsapiclient.data.util.extensions.showErrorSnackbar
 import com.droid.newsapiclient.databinding.FragmentSearchNewsBinding
-import com.droid.newsapiclient.databinding.NewsFragmentLayoutBinding
 import com.droid.newsapiclient.presentation.adapter.NewsAdapter
 import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -65,9 +64,9 @@ class SearchNewsFragment : Fragment() {
                                     .load(it.articles.first().urlToImage)
                                     .into(fragmentSearchNewsBinding.imageView2)
 
-                            fragmentSearchNewsBinding.textView6.text = convertToHoursMins(it.articles.first().publishedAt)
+                            fragmentSearchNewsBinding.textView6.text = it.articles.first().publishedAt?.let { it1 -> convertToHoursMins(it1) }
                             fragmentSearchNewsBinding.textView5.text = "${it.articles.first().title}"
-                            fragmentSearchNewsBinding.textView7.text = "${it.articles.first().source.name }"
+                            fragmentSearchNewsBinding.textView7.text = "${it.articles.first().source?.name}"
 
                         }
                     }

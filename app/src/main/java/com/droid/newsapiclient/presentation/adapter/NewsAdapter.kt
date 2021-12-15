@@ -23,8 +23,8 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
             with(binding) {
 
                 textView8.text = article.title
-                textView6.text =  convertToHoursMins(article.publishedAt)
-                textView7.text = article.source.name
+                textView6.text = article.publishedAt?.let { convertToHoursMins(it) }
+                textView7.text = article.source?.name
                 Glide.with(binding.imageView3.context).load(article.urlToImage).into(binding.imageView3)
 
                 binding.root.setOnClickListener{

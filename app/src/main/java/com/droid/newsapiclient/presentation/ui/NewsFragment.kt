@@ -69,8 +69,13 @@ class NewsFragment : Fragment() {
                     Timber.e("response:  ${response.data}")
                     hideProgressBar()
                     response.data?.let {
-                        if ( it.articles.first().title.isNotEmpty()){
+                        if (it.articles.first().title?.isNotEmpty() == true){
                             fragmentNewsBinding.materialTextView2.text =   "Covid -19 News: \n ${it.articles.first().title}"
+                            val bundle = Bundle().apply {
+                                putSerializable("selected_article", it.articles.first())
+                            }
+                            //pass bundle to info fragment
+                            findNavController().navigate(R.id.action_newsFragment_to_infoFragment, bundle)
                         }
                     }
                 }

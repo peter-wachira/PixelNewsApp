@@ -4,9 +4,11 @@
 </a>
 </p>
 
-# NewsApp V2
+# PixelNews
 This is my simple app demonstration the use of clean architecture. It gets data from the [News API](https://newsapi.org/) and entertains the user using
 clean architecture and MVVM.
+
+![](screenshots/img.png)
 
 ## Prerequisite
 
@@ -91,8 +93,6 @@ This app will make use of the following libraries:
 - [Material Design](https://material.io/develop/android/docs/getting-started/) - build awesome beautiful UIs.🔥🔥
 - [Firebase](https://firebase.google.com/) - Backend As A Service for faster mobile development.
   - [Crashylitics](https://firebase.google.com/docs/crashlytics) - Provide Realtime crash reports from users end.
-- [Like Button](https://github.com/jd-alexander/LikeButton) - Twitter's heart animation for Android
-- [Lottie](https://github.com/airbnb/lottie-android) - Render awesome After Effects animations natively on Android and iOS, Web, and React Native
 - [Glide](https://github.com/bumptech/glide) - Hassle-free image loading
 - [Timber](https://github.com/JakeWharton/timber) - A logger with a small, extensible API which provides utility on top of Android's normal Log class.
 
@@ -101,9 +101,7 @@ This app will make use of the following libraries:
 
 ### Known Bugs
 
-- There are currently no tests done for this project
 - As at the time this project was made, testing and UIs was not a major concern 
-- The project is currently not being maintained any more. Contributions are most welcome if you would like to add more modules to the project, you can reach me through my [Contacts](#Contacts) below.
 - Thanks for understanding.
 
 
@@ -115,7 +113,7 @@ to the repo. The configuration is in the .develop.yml .master.yml .branch.yml***
 #### Code Analysis and test coverage
 
 This code uses [Codacy](https://www.codacy.com/) for analysing the quality of the code, which is
-always going to be A :)
+always going to be > B :)
 
 ```
   MIT License

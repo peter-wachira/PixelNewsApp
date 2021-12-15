@@ -40,7 +40,6 @@
         android:fontFamily="@font/roboto_black"
         />
 
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
         android:layout_width="match_parent"
@@ -48,6 +47,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:padding="8dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/white"
         android:elevation="4dp"
@@ -55,25 +55,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:strokeColor="@android:color/black"
-        app:strokeWidth="1px">
+        app:strokeColor="@color/gray"
+        app:strokeWidth="2px">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView2"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="wrap_content"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
+                android:maxLines="1"
                 android:padding="4dp"
                 android:gravity="center_horizontal"
-                tools:text="Covid-19 News : See the latest coverage about Covid-19 fdfsf ffsdfdsf sdsdfdsf sfdsfsd fsfeww"
+                tools:text="See all Tech Sources"
                 android:textColor="@color/colorTextBlackSecondary"
+                android:fontFamily="@font/roboto_bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:drawableRight="@drawable/ic_chevron_right"
@@ -82,8 +84,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.textview.MaterialTextView
