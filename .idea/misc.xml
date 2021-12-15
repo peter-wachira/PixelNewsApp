@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/background_bottom_sheet.xml" value="0.29259259259259257" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/background_item.xml" value="0.20555555555555555" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/circular_image_background.xml" value="0.29259259259259257" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/circular_primary_image_background.xml" value="0.3697916666666667" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/curved_outline.xml" value="0.3854166666666667" />
@@ -12,6 +13,7 @@
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/ic_logo.xml" value="0.3854166666666667" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/rectange_radius_corners.xml" value="0.3854166666666667" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/search_icon.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/splash_background.xml" value="0.20555555555555555" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/fragment_info.xml" value="0.27877237851662406" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/fragment_news.xml" value="0.20625" />
@@ -24,5 +26,5 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>
