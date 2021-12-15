@@ -63,11 +63,11 @@ fun timePublished(time: String): Int {
 
     val now = System.currentTimeMillis()
     val dateFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
-    val currentTime =re.replace( dateFormat.format(Date(now)),"")[1].toInt() + 12
+    val currentTime = re.replace(dateFormat.format(Date(now)), "")[1].toInt() + 12
     Timber.e("currentTime: $currentTime")
-    val apiTime = re.replace(convertToHoursMins(time),"")[1].toInt() + 12
+    val apiTime = re.replace(convertToHoursMins(time), "")[1].toInt() + 12
     Timber.e("apiTime: $apiTime")
-    val timeDifference  =  apiTime - currentTime
+    val timeDifference = apiTime - currentTime
     Timber.e("timeDifference:$timeDifference")
 
     return timeDifference

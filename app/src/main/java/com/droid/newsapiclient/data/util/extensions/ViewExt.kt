@@ -4,11 +4,9 @@ package com.droid.newsapiclient.data.util.extensions
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.view.View
 import android.view.View.*
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.droid.newsapiclient.R
 import com.google.android.material.snackbar.Snackbar
@@ -49,7 +47,6 @@ fun View.showSnackbar(message: String, length: Int) {
 }
 
 
-
 fun View.showErrorSnackbar(message: String, length: Int) {
     val snackbar = Snackbar.make(this, message, length)
 
@@ -65,7 +62,7 @@ fun View.showSuccessSnackbar(message: String, length: Int) {
 
     snackbar.apply {
         this.setBackgroundTint(
-            ContextCompat.getColor(view.context, R.color.colorPrimary)
+                ContextCompat.getColor(view.context, R.color.colorPrimary)
         )
         this.setTextColor(ContextCompat.getColor(this.context, android.R.color.white))
         show()
@@ -100,8 +97,8 @@ fun View.showRetrySnackBar(message: String, action: ((View) -> Unit)?) {
 }
 
 internal inline fun <reified T> Activity.navigateTo(
-    clearTask: Boolean = false,
-    noinline intentExtras: ((Intent) -> Unit)? = null
+        clearTask: Boolean = false,
+        noinline intentExtras: ((Intent) -> Unit)? = null
 ) {
 
     val intent = Intent(this, T::class.java)

@@ -15,15 +15,15 @@ import javax.inject.Singleton
 class DatabaseModule {
     @Provides
     @Singleton
-    fun providesNewsDataBase(app:Application):ArticleDatabase{
-        return Room.databaseBuilder(app,ArticleDatabase::class.java,"news_db")
-            .fallbackToDestructiveMigration()
-            .build()
+    fun providesNewsDataBase(app: Application): ArticleDatabase {
+        return Room.databaseBuilder(app, ArticleDatabase::class.java, "news_db")
+                .fallbackToDestructiveMigration()
+                .build()
     }
 
     @Provides
     @Singleton
-    fun providesNewsDao(articleDatabase: ArticleDatabase): ArticleDao{
+    fun providesNewsDao(articleDatabase: ArticleDatabase): ArticleDao {
         return articleDatabase.getArticleDao()
     }
 }

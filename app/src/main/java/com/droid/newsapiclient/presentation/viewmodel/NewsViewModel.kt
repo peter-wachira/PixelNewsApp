@@ -7,7 +7,6 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.droid.newsapiclient.data.model.APIResponse
 import com.droid.newsapiclient.data.model.Article
@@ -17,7 +16,6 @@ import com.droid.newsapiclient.domain.usecase.GetSearchNewsUseCase
 import com.droid.newsapiclient.domain.usecase.SaveNewsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class NewsViewModel(
         private val app: Application,
@@ -45,29 +43,29 @@ class NewsViewModel(
     }
 
     //Search news implementation
-    val searchedNews:  MutableLiveData<Resource <APIResponse>> = MutableLiveData()
+    val searchedNews: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
     fun searchNews(
             country: String,
-            searchQuery:String,
+            searchQuery: String,
             page: Int
     ) = viewModelScope.launch {
         searchedNews.postValue(Resource.Loading())
         try {
-            if (isNetworkAvailable(app)){
-                val response = getSearchNewsUseCase.execute(country,searchQuery,page)
+            if (isNetworkAvailable(app)) {
+                val response = getSearchNewsUseCase.execute(country, searchQuery, page)
                 searchedNews.postValue(response)
-            }else{
+            } else {
                 searchedNews.postValue(Resource.Error("No internet connection"))
             }
-        }catch (e:Exception ){
+        } catch (e: Exception) {
             searchedNews.postValue(Resource.Error(e.message.toString()))
         }
     }
 
 
     //local data
-    fun saveArticle(article: Article)= viewModelScope.launch {
+    fun saveArticle(article: Article) = viewModelScope.launch {
         saveNewsUseCase.execute(article)
     }
 

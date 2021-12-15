@@ -27,18 +27,17 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView2"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:fontFamily="@font/roboto_medium"
         android:layout_marginStart="16dp"
+        android:fontFamily="@font/roboto_black"
         android:text="News"
         android:textColor="@android:color/black"
+        app:fontFamily="@font/roboto_medium"
         app:layout_constraintBottom_toBottomOf="@+id/materialTextView"
         app:layout_constraintStart_toEndOf="@+id/materialTextView"
-        app:layout_constraintTop_toTopOf="@+id/materialTextView"
-        style="@style/TextAppearance.MaterialComponents.Headline4"
-        android:fontFamily="@font/roboto_black"
-        />
+        app:layout_constraintTop_toTopOf="@+id/materialTextView" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardView"
@@ -47,10 +46,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:padding="8dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/white"
         android:elevation="4dp"
+        android:padding="8dp"
         app:cardCornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,17 +69,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
+                android:drawableRight="@drawable/ic_chevron_right"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center_horizontal"
                 android:maxLines="1"
                 android:padding="4dp"
-                android:gravity="center_horizontal"
-                tools:text="See all Tech Sources"
                 android:textColor="@color/colorTextBlackSecondary"
-                android:fontFamily="@font/roboto_bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:drawableRight="@drawable/ic_chevron_right"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="See all Tech Sources" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -93,9 +92,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        app:fontFamily="@font/roboto"
         android:text="News for you today"
         android:textColor="@android:color/black"
+        app:fontFamily="@font/roboto"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
@@ -103,11 +102,11 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:text="Top 5 news for you today"
         android:textColor="@color/colorPrimary"
         app:fontFamily="@font/roboto"
-        android:layout_marginStart="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 

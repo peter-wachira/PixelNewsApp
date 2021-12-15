@@ -1,5 +1,6 @@
 package com.droid.newsapiclient.presentation.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -60,8 +61,8 @@ class NewsFragment : Fragment() {
     }
 
 
-
-    private fun getBannerNews(){
+    @SuppressLint("SetTextI18n")
+    private fun getBannerNews() {
         viewModel.searchNews("us", "covid", page)
         viewModel.searchedNews.observe(viewLifecycleOwner, { response ->
             when (response) {
@@ -69,8 +70,8 @@ class NewsFragment : Fragment() {
                     Timber.e("response:  ${response.data}")
                     hideProgressBar()
                     response.data?.let {
-                        if (it.articles.first().title?.isNotEmpty() == true){
-                            fragmentNewsBinding.materialTextView2.text =   "Covid -19 News: \n ${it.articles.first().title}"
+                        if (it.articles.first().title?.isNotEmpty() == true) {
+                            fragmentNewsBinding.materialTextView2.text = "Covid -19 News: \n ${it.articles.first().title}"
                             val bundle = Bundle().apply {
                                 putSerializable("selected_article", it.articles.first())
                             }

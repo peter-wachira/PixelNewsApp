@@ -5,13 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.droid.newsapiclient.data.model.Article
 import com.droid.newsapiclient.data.util.extensions.convertToHoursMins
-import com.droid.newsapiclient.data.util.extensions.nowToHrsMins
-import com.droid.newsapiclient.data.util.extensions.timePublished
 import com.droid.newsapiclient.databinding.NewsItemLayoutBinding
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
@@ -27,7 +24,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
                 textView7.text = article.source?.name
                 Glide.with(binding.imageView3.context).load(article.urlToImage).into(binding.imageView3)
 
-                binding.root.setOnClickListener{
+                binding.root.setOnClickListener {
                     onItemClickListener?.let { it(article) }
                 }
             }
@@ -64,9 +61,9 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     }
 
 
-    private var onItemClickListener : ((Article) ->Unit)?= null
+    private var onItemClickListener: ((Article) -> Unit)? = null
 
-    fun setOnItemClickListener (listener :(Article) -> Unit){
+    fun setOnItemClickListener(listener: (Article) -> Unit) {
         onItemClickListener = listener
     }
 
