@@ -1,24 +1,26 @@
 package com.droid.newsapiclient.presentation.di
 
 import com.droid.newsapiclient.data.repository.NewsRepositoryImpl
+import com.droid.newsapiclient.data.repository.datasource.NewsLocalDataSource
 import com.droid.newsapiclient.data.repository.datasource.NewsRemoteDataSource
 import com.droid.newsapiclient.domain.repository.NewsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 class RepositoryModule {
 
     @Singleton
     @Provides
     fun provideNewsRepository(
-            newsRemoteDataSource: NewsRemoteDataSource
+            newsRemoteDataSource: NewsRemoteDataSource,
+            newsLocalDataSource: NewsLocalDataSource
     ): NewsRepository{
-        return  NewsRepositoryImpl(newsRemoteDataSource)
+        return  NewsRepositoryImpl(newsRemoteDataSource,newsLocalDataSource)
     }
 }
