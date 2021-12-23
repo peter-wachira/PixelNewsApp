@@ -2,6 +2,7 @@ package com.droid.newsapiclient.presentation.di
 
 import com.droid.newsapiclient.domain.repository.NewsRepository
 import com.droid.newsapiclient.domain.usecase.GetNewsHeadlinesUseCase
+import com.droid.newsapiclient.domain.usecase.GetSavedNewsUseCase
 import com.droid.newsapiclient.domain.usecase.GetSearchNewsUseCase
 import com.droid.newsapiclient.domain.usecase.SaveNewsUseCase
 import dagger.Module
@@ -28,6 +29,11 @@ class UseCaseModule {
     @Provides
     fun providesGetSavedNewsUseCaseModule(newsRepository: NewsRepository): SaveNewsUseCase {
         return SaveNewsUseCase(newsRepository)
+    }
+
+    @Provides
+    fun provideGetSavedNewsUsecaseModule(newsRepository: NewsRepository): GetSavedNewsUseCase {
+        return GetSavedNewsUseCase(newsRepository)
     }
 }
 

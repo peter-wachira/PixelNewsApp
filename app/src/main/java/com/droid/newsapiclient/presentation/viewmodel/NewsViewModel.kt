@@ -7,21 +7,25 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.droid.newsapiclient.data.model.APIResponse
 import com.droid.newsapiclient.data.model.Article
 import com.droid.newsapiclient.data.util.Resource
 import com.droid.newsapiclient.domain.usecase.GetNewsHeadlinesUseCase
+import com.droid.newsapiclient.domain.usecase.GetSavedNewsUseCase
 import com.droid.newsapiclient.domain.usecase.GetSearchNewsUseCase
 import com.droid.newsapiclient.domain.usecase.SaveNewsUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class NewsViewModel(
-        private val app: Application,
-        private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
-        private val getSearchNewsUseCase: GetSearchNewsUseCase,
-        private val saveNewsUseCase: SaveNewsUseCase
+    private val app: Application,
+    private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
+    private val getSearchNewsUseCase: GetSearchNewsUseCase,
+    private val saveNewsUseCase: SaveNewsUseCase,
+    private val getSavedNewsUseCase: GetSavedNewsUseCase
 ) : AndroidViewModel(app) {
     val newsHeadLines: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
@@ -46,9 +50,9 @@ class NewsViewModel(
     val searchedNews: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
     fun searchNews(
-            country: String,
-            searchQuery: String,
-            page: Int
+        country: String,
+        searchQuery: String,
+        page: Int
     ) = viewModelScope.launch {
         searchedNews.postValue(Resource.Loading())
         try {
@@ -64,6 +68,12 @@ class NewsViewModel(
     }
 
 
+    fun getSavedNews() = liveData {
+        getSavedNewsUseCase.execute().collect {
+            emit(it)
+        }
+    }
+
     //local data
     fun saveArticle(article: Article) = viewModelScope.launch {
         saveNewsUseCase.execute(article)
@@ -71,9 +81,11 @@ class NewsViewModel(
 
     private fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
             if (capabilities != null) {
                 when {
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {

@@ -18,9 +18,9 @@ class NewsApp : Application() {
 
     private fun enableStrictMode() {
         val policy = StrictMode.ThreadPolicy.Builder()
-                .detectAll()
-                .penaltyLog()
-                .build();
+            .detectAll()
+            .penaltyLog()
+            .build()
         StrictMode.setThreadPolicy(policy)
     }
 }
