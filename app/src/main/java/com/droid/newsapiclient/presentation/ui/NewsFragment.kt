@@ -73,10 +73,10 @@ class NewsFragment : Fragment() {
                         val articleslist = it.articles
                         if (articleslist.first().title?.isNotEmpty() == true) {
                             fragmentNewsBinding.materialTextView2.text =
-                                "Covid -19 News: \n ${articleslist.first().title}"
+                                "Covid -19 News: \n ${articleslist.last().title}"
                             fragmentNewsBinding.materialTextView2.setOnClickListener {
                                 val bundle = Bundle().apply {
-                                    putSerializable("selected_article", articleslist.first())
+                                    putSerializable("selected_article", articleslist.last())
                                 }
                                 //pass bundle to info fragment
                                 findNavController().navigate(

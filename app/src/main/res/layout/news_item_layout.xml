@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/primaryColor">
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -13,11 +13,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:padding="4dp"
         android:textAlignment="viewStart"
-        android:textColor="@android:color/black"
+        android:textColor="@color/primaryTextColor"
         app:fontFamily="@font/roboto"
         app:layout_constraintEnd_toStartOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,8 +63,9 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/rectange_radius_corners"
         android:src="@drawable/ic_eclipse"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView8"
-        app:srcCompat="@drawable/ic_small_image" />
+        app:srcCompat="@drawable/ic_small_image"
+        android:contentDescription="article image" />
 </androidx.constraintlayout.widget.ConstraintLayout>
