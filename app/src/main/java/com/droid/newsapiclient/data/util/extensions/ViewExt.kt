@@ -39,7 +39,7 @@ fun View.disable() {
 fun View.showSnackbar(message: String, length: Int) {
     val snackbar = Snackbar.make(this, message, length)
     snackbar.apply {
-        setTextColor(ContextCompat.getColor(this.context,R.color.primaryTextColor))
+        setTextColor(ContextCompat.getColor(this.context, R.color.primaryTextColor))
         this.setBackgroundTint(ContextCompat.getColor(context, R.color.primaryColor))
         show()
 
