@@ -46,17 +46,15 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/primaryDarkColor"
         app:cardCornerRadius="4dp"
+        android:backgroundTint="#E4E3E3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialTextView">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-           >
+            android:layout_height="wrap_content">
 
 
             <SearchView
@@ -64,9 +62,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="2dp"
-                android:backgroundTint="@color/primaryDarkColor"
                 android:queryHint="Search Here"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:queryBackground="@color/primaryDarkColor"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -120,7 +118,6 @@
         style="@style/TextAppearance.AppCompat.Body2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:padding="4dp"
         tools:text="Dream home design inspiration for you"

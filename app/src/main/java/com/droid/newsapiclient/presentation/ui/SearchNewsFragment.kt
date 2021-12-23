@@ -13,6 +13,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.droid.newsapiclient.R
 import com.droid.newsapiclient.data.util.Resource
 import com.droid.newsapiclient.data.util.extensions.convertToHoursMins
@@ -52,6 +55,7 @@ class SearchNewsFragment : Fragment() {
     }
 
     private fun getBannerNews() {
+        val transformation = MultiTransformation(CenterCrop(), RoundedCorners(15))
         viewModel.searchNews("us", "covid", page)
         viewModel.searchedNews.observe(viewLifecycleOwner, { response ->
             when (response) {
@@ -60,15 +64,29 @@ class SearchNewsFragment : Fragment() {
                     hideProgressBar()
                     response.data?.let {
                         Glide.with(fragmentSearchNewsBinding.root.context)
-                            .load(it.articles.first().urlToImage)
+                            .load(it.articles.last().urlToImage)
+                            .transform(transformation)
                             .into(fragmentSearchNewsBinding.imageView2)
+                        val articleList = it.articles
+                        with(fragmentSearchNewsBinding) {
+                            textView6.text =
+                                articleList.last().publishedAt?.let { it1 -> convertToHoursMins(it1) }
+                            textView5.text =
+                                "${articleList.last().title}"
+                            textView7.text =
+                                "${articleList.last().source?.name}"
+                            imageView2.setOnClickListener {
+                                val bundle = Bundle().apply {
+                                    putSerializable("selected_article", articleList.last())
+                                }
+                                //pass bundle to info fragment
+                                findNavController().navigate(
+                                    R.id.action_searchFragment_to_infoFragment,
+                                    bundle
+                                )
+                            }
 
-                        fragmentSearchNewsBinding.textView6.text =
-                            it.articles.first().publishedAt?.let { it1 -> convertToHoursMins(it1) }
-                        fragmentSearchNewsBinding.textView5.text =
-                            "${it.articles.first().title}"
-                        fragmentSearchNewsBinding.textView7.text =
-                            "${it.articles.first().source?.name}"
+                        }
 
                     }
                 }

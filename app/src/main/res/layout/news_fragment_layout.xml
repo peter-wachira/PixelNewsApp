@@ -31,7 +31,7 @@
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/pixels"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="@color/colorAccent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -65,8 +65,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2"
-                app:strokeColor="@color/gray"
-                app:strokeWidth="2dp">
+                app:strokeColor="@color/primaryDarkColor"
+                app:strokeWidth="1dp">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -116,7 +116,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/top_5_news_for_you_today"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorTextBlackPrimary"
                 app:fontFamily="@font/roboto"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />

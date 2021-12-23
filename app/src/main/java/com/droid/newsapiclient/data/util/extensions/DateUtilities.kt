@@ -38,8 +38,7 @@ fun utcTODate(time: String): String {
 
 fun utcToDateTime(time: String): String {
     //2021-04-03T19:15:29.3266667
-    val epoch: Long
-
+    val epoch: Long?
     val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
     epoch = (dateFormat.parse(time)).time / 1000
     val simpleDateFormat = SimpleDateFormat("dd MMM, yyyy 'at' HH:mm aa", Locale.getDefault())
@@ -86,7 +85,6 @@ fun utcToDateOnly(time: String): String {
 fun convertToHoursMins(time: String): String {
     val dateFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
     val date = dateFormatter.parse(time)
-
     val timeFormatter = SimpleDateFormat("hh:mm a", Locale.getDefault())
     return timeFormatter.format(date)
 }
