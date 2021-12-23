@@ -31,8 +31,8 @@
         android:layout_marginTop="24dp"
         android:drawablePadding="8dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="Headlines"
-        android:textColor="@android:color/black"
+        android:text="@string/headlines"
+        android:textColor="@color/primaryTextColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -46,7 +46,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/primaryDarkColor"
         app:cardCornerRadius="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,21 +56,21 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/curved_outline">
+           >
 
 
             <SearchView
                 android:id="@+id/searchNews"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="#d1d2d9"
-                android:backgroundTint="#DADBE0"
-
+                android:padding="2dp"
+                android:backgroundTint="@color/primaryDarkColor"
                 android:queryHint="Search Here"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:searchIcon="@drawable/ic_baseline_search_24" />
+                 />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -85,9 +85,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-
         android:fontFamily="@font/roboto"
-        android:text="News for you today"
+        android:text="@string/news_for_you_today"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
@@ -99,9 +98,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto"
-
-        android:text="Top 5 news for you today"
-        android:textColor="@color/colorPrimary"
+        android:text="@string/top_5_news_for_you_today"
+        android:textColor="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -114,7 +112,8 @@
         android:src="@drawable/ic_placeholder_large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        android:contentDescription="banner Image" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView5"
@@ -124,8 +123,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:padding="4dp"
-        android:text="Dream home design inspiration for you"
-        android:textColor="@android:color/black"
+        tools:text="Dream home design inspiration for you"
+        android:textColor="@color/primaryTextColor"
         app:fontFamily="@font/roboto"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
@@ -139,7 +138,7 @@
         android:layout_marginTop="4dp"
         android:fontFamily="@font/roboto"
         android:padding="4dp"
-        android:text="3 Hours"
+        tools:text="3 Hours"
         android:textColor="@color/colorTextBlackSecondary"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -154,7 +153,7 @@
         android:drawablePadding="4dp"
         android:fontFamily="@font/roboto"
         android:padding="4dp"
-        android:text="Architect"
+        tools:text="Architect"
         android:textColor="@color/colorTextBlackSecondary"
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintStart_toEndOf="@+id/textView6"

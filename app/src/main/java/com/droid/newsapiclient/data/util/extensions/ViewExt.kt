@@ -40,7 +40,7 @@ fun View.showSnackbar(message: String, length: Int) {
     val snackbar = Snackbar.make(this, message, length)
     snackbar.apply {
         setTextColor(ContextCompat.getColor(this.context, android.R.color.white))
-        this.setBackgroundTint(ContextCompat.getColor(context, R.color.colorPrimary))
+        this.setBackgroundTint(ContextCompat.getColor(context, R.color.primaryColor))
         show()
 
     }
@@ -62,7 +62,7 @@ fun View.showSuccessSnackbar(message: String, length: Int) {
 
     snackbar.apply {
         this.setBackgroundTint(
-            ContextCompat.getColor(view.context, R.color.colorPrimary)
+            ContextCompat.getColor(view.context, R.color.primaryColor)
         )
         this.setTextColor(ContextCompat.getColor(this.context, android.R.color.white))
         show()
