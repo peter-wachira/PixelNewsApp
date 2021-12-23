@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
-import android.widget.Adapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +16,7 @@ import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
 
 
 class SavedFragment : Fragment() {
-    private val binding: FragmentSavedBinding by lazy{
+    private val binding: FragmentSavedBinding by lazy {
         FragmentSavedBinding.inflate(layoutInflater)
     }
     private lateinit var viewModel: NewsViewModel
@@ -28,13 +27,10 @@ class SavedFragment : Fragment() {
     private var isLastPage = false
     private var pages = 0
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?) = binding.root
-
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ) = binding.root
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,7 +56,7 @@ class SavedFragment : Fragment() {
     }
 
     private fun viewSavedNews() {
-        viewModel.getSavedNews().observe(viewLifecycleOwner,{
+        viewModel.getSavedNews().observe(viewLifecycleOwner, {
             newsAdapter.differ.submitList(it)
         })
     }

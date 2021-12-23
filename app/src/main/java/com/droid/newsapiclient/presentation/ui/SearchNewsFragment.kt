@@ -59,34 +59,38 @@ class SearchNewsFragment : Fragment() {
                     Timber.e("response:  ${response.data}")
                     hideProgressBar()
                     response.data?.let {
-                        if (it.articles.first() != null) {
-                            Glide.with(fragmentSearchNewsBinding.root.context)
-                                    .load(it.articles.first().urlToImage)
-                                    .into(fragmentSearchNewsBinding.imageView2)
+                        Glide.with(fragmentSearchNewsBinding.root.context)
+                            .load(it.articles.first().urlToImage)
+                            .into(fragmentSearchNewsBinding.imageView2)
 
-                            fragmentSearchNewsBinding.textView6.text = it.articles.first().publishedAt?.let { it1 -> convertToHoursMins(it1) }
-                            fragmentSearchNewsBinding.textView5.text = "${it.articles.first().title}"
-                            fragmentSearchNewsBinding.textView7.text = "${it.articles.first().source?.name}"
+                        fragmentSearchNewsBinding.textView6.text =
+                            it.articles.first().publishedAt?.let { it1 -> convertToHoursMins(it1) }
+                        fragmentSearchNewsBinding.textView5.text =
+                            "${it.articles.first().title}"
+                        fragmentSearchNewsBinding.textView7.text =
+                            "${it.articles.first().source?.name}"
 
-                        }
                     }
                 }
                 is Resource.Error -> {
                     response.message.let {
                         fragmentSearchNewsBinding.root.showErrorSnackbar(
-                                "An error occurred : $it",
-                                Snackbar.LENGTH_LONG
+                            "An error occurred : $it",
+                            Snackbar.LENGTH_LONG
                         )
                     }
                 }
+                else -> {}
             }
         })
 
     }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search_news, container, false)
     }
@@ -94,7 +98,8 @@ class SearchNewsFragment : Fragment() {
 
     //    search implementation
     private fun setSearchView() {
-        fragmentSearchNewsBinding.searchNews.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        fragmentSearchNewsBinding.searchNews.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel.searchNews("us", query.toString(), page)
                 viewSearchedNews()
@@ -143,11 +148,12 @@ class SearchNewsFragment : Fragment() {
                 is Resource.Error -> {
                     response.message.let {
                         fragmentSearchNewsBinding.root.showErrorSnackbar(
-                                "An error occurred : $it",
-                                Snackbar.LENGTH_LONG
+                            "An error occurred : $it",
+                            Snackbar.LENGTH_LONG
                         )
                     }
                 }
+                else -> {}
             }
         })
     }
@@ -196,24 +202,20 @@ class SearchNewsFragment : Fragment() {
                         isLastPage = page == pages
                     }
                 }
-                is Error -> {
+
+
+                else -> {
                     hideProgressBar()
                     response.message?.let {
 
                         fragmentSearchNewsBinding.root.showErrorSnackbar(
-                                "An error occurred : $it",
-                                Snackbar.LENGTH_LONG
+                            "An error occurred : $it",
+                            Snackbar.LENGTH_LONG
                         )
 
                     }
 
                 }
-
-
-                is Resource.Loading -> {
-                    showProgressBar()
-                }
-
             }
         })
     }
@@ -230,7 +232,8 @@ class SearchNewsFragment : Fragment() {
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
-            val layoutManager = fragmentSearchNewsBinding.rvNews.layoutManager as LinearLayoutManager
+            val layoutManager =
+                fragmentSearchNewsBinding.rvNews.layoutManager as LinearLayoutManager
             val sizeOfTheCurrentList = layoutManager.itemCount
             val visibleItems = layoutManager.childCount
             val topPosition = layoutManager.findFirstVisibleItemPosition()

@@ -21,11 +21,11 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class NewsViewModel(
-        private val app: Application,
-        private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
-        private val getSearchNewsUseCase: GetSearchNewsUseCase,
-        private val saveNewsUseCase: SaveNewsUseCase,
-        private val getSavedNewsUseCase: GetSavedNewsUseCase
+    private val app: Application,
+    private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
+    private val getSearchNewsUseCase: GetSearchNewsUseCase,
+    private val saveNewsUseCase: SaveNewsUseCase,
+    private val getSavedNewsUseCase: GetSavedNewsUseCase
 ) : AndroidViewModel(app) {
     val newsHeadLines: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
@@ -50,9 +50,9 @@ class NewsViewModel(
     val searchedNews: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
     fun searchNews(
-            country: String,
-            searchQuery: String,
-            page: Int
+        country: String,
+        searchQuery: String,
+        page: Int
     ) = viewModelScope.launch {
         searchedNews.postValue(Resource.Loading())
         try {
@@ -68,7 +68,7 @@ class NewsViewModel(
     }
 
 
-    fun getSavedNews()= liveData {
+    fun getSavedNews() = liveData {
         getSavedNewsUseCase.execute().collect {
             emit(it)
         }
@@ -81,9 +81,11 @@ class NewsViewModel(
 
     private fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
             if (capabilities != null) {
                 when {
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {

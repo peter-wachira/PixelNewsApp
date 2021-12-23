@@ -6,7 +6,7 @@ import com.droid.newsapiclient.data.repository.datasource.NewsLocalDataSource
 import kotlinx.coroutines.flow.Flow
 
 class NewsLocalDataSourceImpl(
-        private val articleDao: ArticleDao
+    private val articleDao: ArticleDao
 ) : NewsLocalDataSource {
     override suspend fun saveArticleToDB(article: Article) {
         articleDao.insert(article)

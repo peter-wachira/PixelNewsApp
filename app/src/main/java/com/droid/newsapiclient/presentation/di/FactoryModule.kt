@@ -17,9 +17,20 @@ import javax.inject.Singleton
 class FactoryModule {
     @Singleton
     @Provides
-    fun provideNewsViewModelFactory(application: Application,
-                                    getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase, getSearchNewsUseCase: GetSearchNewsUseCase, saveNewsUseCase: SaveNewsUseCase,getSavedNewsUseCase: GetSavedNewsUseCase): NewsViewModelFactory {
-        return NewsViewModelFactory(application, getNewsHeadlinesUseCase, getSearchNewsUseCase, saveNewsUseCase,getSavedNewsUseCase)
+    fun provideNewsViewModelFactory(
+        application: Application,
+        getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
+        getSearchNewsUseCase: GetSearchNewsUseCase,
+        saveNewsUseCase: SaveNewsUseCase,
+        getSavedNewsUseCase: GetSavedNewsUseCase
+    ): NewsViewModelFactory {
+        return NewsViewModelFactory(
+            application,
+            getNewsHeadlinesUseCase,
+            getSearchNewsUseCase,
+            saveNewsUseCase,
+            getSavedNewsUseCase
+        )
 
     }
 

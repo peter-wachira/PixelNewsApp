@@ -14,10 +14,10 @@ import com.droid.newsapiclient.data.model.Article
 import com.droid.newsapiclient.data.util.extensions.convertToHoursMins
 import com.droid.newsapiclient.databinding.NewsItemLayoutBinding
 
-class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>(){
+class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     inner class NewsViewHolder(
-            val binding: NewsItemLayoutBinding
+        val binding: NewsItemLayoutBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(article: Article) {
             with(binding) {
@@ -27,7 +27,8 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>(){
                 textView7.text = article.source?.name
 
                 val transformation = MultiTransformation(CenterCrop(), RoundedCorners(15))
-                Glide.with(binding.imageView3.context).load(article.urlToImage).transform(transformation).into(binding.imageView3)
+                Glide.with(binding.imageView3.context).load(article.urlToImage)
+                    .transform(transformation).into(binding.imageView3)
 
                 binding.root.setOnClickListener {
                     onItemClickListener?.let { it(article) }

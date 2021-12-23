@@ -20,9 +20,9 @@ class NetModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(BuildConfig.BASE_URL)
-                .build()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(BuildConfig.BASE_URL)
+            .build()
     }
 
     @Singleton

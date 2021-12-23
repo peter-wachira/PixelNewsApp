@@ -32,7 +32,7 @@ class UseCaseModule {
     }
 
     @Provides
-    fun provideGetSavedNewsUsecaseModule(newsRepository: NewsRepository): GetSavedNewsUseCase{
+    fun provideGetSavedNewsUsecaseModule(newsRepository: NewsRepository): GetSavedNewsUseCase {
         return GetSavedNewsUseCase(newsRepository)
     }
 }

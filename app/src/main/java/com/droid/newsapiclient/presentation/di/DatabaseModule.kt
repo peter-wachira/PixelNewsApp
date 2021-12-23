@@ -17,8 +17,8 @@ class DatabaseModule {
     @Singleton
     fun providesNewsDataBase(app: Application): ArticleDatabase {
         return Room.databaseBuilder(app, ArticleDatabase::class.java, "news_db")
-                .fallbackToDestructiveMigration()
-                .build()
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides
