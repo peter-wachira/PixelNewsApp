@@ -7,11 +7,14 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.droid.newsapiclient.data.model.Article
 import com.droid.newsapiclient.data.util.extensions.convertToHoursMins
 import com.droid.newsapiclient.databinding.NewsItemLayoutBinding
 
-class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>(){
 
     inner class NewsViewHolder(
             val binding: NewsItemLayoutBinding
@@ -22,7 +25,9 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
                 textView8.text = article.title
                 textView6.text = article.publishedAt?.let { convertToHoursMins(it) }
                 textView7.text = article.source?.name
-                Glide.with(binding.imageView3.context).load(article.urlToImage).into(binding.imageView3)
+
+                val transformation = MultiTransformation(CenterCrop(), RoundedCorners(15))
+                Glide.with(binding.imageView3.context).load(article.urlToImage).transform(transformation).into(binding.imageView3)
 
                 binding.root.setOnClickListener {
                     onItemClickListener?.let { it(article) }

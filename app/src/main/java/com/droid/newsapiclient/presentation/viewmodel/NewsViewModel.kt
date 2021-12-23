@@ -7,21 +7,25 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.droid.newsapiclient.data.model.APIResponse
 import com.droid.newsapiclient.data.model.Article
 import com.droid.newsapiclient.data.util.Resource
 import com.droid.newsapiclient.domain.usecase.GetNewsHeadlinesUseCase
+import com.droid.newsapiclient.domain.usecase.GetSavedNewsUseCase
 import com.droid.newsapiclient.domain.usecase.GetSearchNewsUseCase
 import com.droid.newsapiclient.domain.usecase.SaveNewsUseCase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class NewsViewModel(
         private val app: Application,
         private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
         private val getSearchNewsUseCase: GetSearchNewsUseCase,
-        private val saveNewsUseCase: SaveNewsUseCase
+        private val saveNewsUseCase: SaveNewsUseCase,
+        private val getSavedNewsUseCase: GetSavedNewsUseCase
 ) : AndroidViewModel(app) {
     val newsHeadLines: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
@@ -63,6 +67,12 @@ class NewsViewModel(
         }
     }
 
+
+    fun getSavedNews()= liveData {
+        getSavedNewsUseCase.execute().collect {
+            emit(it)
+        }
+    }
 
     //local data
     fun saveArticle(article: Article) = viewModelScope.launch {
