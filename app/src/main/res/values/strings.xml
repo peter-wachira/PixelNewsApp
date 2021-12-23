@@ -3,4 +3,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="saved_fragment">Saved Fragment</string>
+    <string name="headlines">Headlines</string>
+    <string name="news_for_you_today">News for you today</string>
+    <string name="pixels">Pixels</string>
+    <string name="news">News</string>
+    <string name="top_5_news_for_you_today">Top 5 news for you today</string>
 </resources>
