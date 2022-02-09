@@ -14,6 +14,21 @@ import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
 
 
 class SavedFragment : Fragment() {
+    private val binding: FragmentSavedBinding by lazy {
+        FragmentSavedBinding.inflate(layoutInflater)
+    }
+    private lateinit var viewModel: NewsViewModel
+    private lateinit var newsAdapter: NewsAdapter
+    private var page = 1
+    private var isScrolling = false
+    private var isLoading = false
+    private var isLastPage = false
+    private var pages = 0
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ) = binding.root
 
     private lateinit var binding: FragmentSavedBinding
     private lateinit var viewModel: NewsViewModel

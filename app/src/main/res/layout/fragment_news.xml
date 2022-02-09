@@ -4,25 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/layout_background"
     tools:context=".presentation.ui.NewsFragment">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchNews"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/list_background" />
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvNews"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp">
-    </androidx.recyclerview.widget.RecyclerView>
+        android:padding="5dp"/>
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
-        android:visibility="invisible"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="invisible" />
 </LinearLayout>

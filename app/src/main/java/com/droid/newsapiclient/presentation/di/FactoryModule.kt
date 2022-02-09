@@ -19,9 +19,7 @@ class FactoryModule {
     @Provides
     fun provideNewsViewModelFactory(application: Application,
                                     getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase, getSearchNewsUseCase: GetSearchNewsUseCase, saveNewsUseCase: SaveNewsUseCase, getSavedNewsUseCase: GetSavedNewsUseCase): NewsViewModelFactory {
-        return NewsViewModelFactory(application, getNewsHeadlinesUseCase, getSearchNewsUseCase, saveNewsUseCase, getSavedNewsUseCase)
-
+        return NewsViewModelFactory(application, getNewsHeadlinesUseCase, getSearchNewsUseCase, saveNewsUseCase, getSavedNewsUseCase)   
     }
-
 
 }

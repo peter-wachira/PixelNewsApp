@@ -22,6 +22,7 @@ class NewsViewModelFactory(
                 getSearchNewsUseCase,
                 saveNewsUseCase,
                 getSavedNewsUseCase
+
         ) as T
     }
 }

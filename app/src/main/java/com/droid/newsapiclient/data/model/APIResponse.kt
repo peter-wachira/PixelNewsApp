@@ -4,10 +4,10 @@ package com.droid.newsapiclient.data.model
 import com.google.gson.annotations.SerializedName
 
 data class APIResponse(
-        @SerializedName("articles")
+    @SerializedName("articles")
     val articles: List<Article>,
-        @SerializedName("status")
+    @SerializedName("status")
     val status: String,
-        @SerializedName("totalResults")
+    @SerializedName("totalResults")
     val totalResults: Int
 )

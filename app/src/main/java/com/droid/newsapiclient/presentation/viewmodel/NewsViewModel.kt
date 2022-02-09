@@ -26,6 +26,7 @@ class NewsViewModel(
         private val getSearchNewsUseCase: GetSearchNewsUseCase,
         private val saveNewsUseCase: SaveNewsUseCase,
         private val getSavedNewsUseCase: GetSavedNewsUseCase
+
 ) : AndroidViewModel(app) {
     val newsHeadLines: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
@@ -47,37 +48,45 @@ class NewsViewModel(
     }
 
     //Search news implementation
-    val searchedNews:  MutableLiveData<Resource <APIResponse>> = MutableLiveData()
+    val searchedNews: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
     fun searchNews(
-            country: String,
-            searchQuery:String,
-            page: Int
+        country: String,
+        searchQuery: String,
+        page: Int
     ) = viewModelScope.launch {
         searchedNews.postValue(Resource.Loading())
         try {
-            if (isNetworkAvailable(app)){
-                val response = getSearchNewsUseCase.execute(country,searchQuery,page)
+            if (isNetworkAvailable(app)) {
+                val response = getSearchNewsUseCase.execute(country, searchQuery, page)
                 searchedNews.postValue(response)
-            }else{
+            } else {
                 searchedNews.postValue(Resource.Error("No internet connection"))
             }
-        }catch (e:Exception ){
+        } catch (e: Exception) {
             searchedNews.postValue(Resource.Error(e.message.toString()))
         }
     }
 
 
+    fun getSavedNews() = liveData {
+        getSavedNewsUseCase.execute().collect {
+            emit(it)
+        }
+    }
+
     //local data
-    fun saveArticle(article: Article)= viewModelScope.launch {
+    fun saveArticle(article: Article) = viewModelScope.launch {
         saveNewsUseCase.execute(article)
     }
 
     private fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
             if (capabilities != null) {
                 when {
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {

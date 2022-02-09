@@ -11,12 +11,12 @@
 
     <WebView
         android:id="@+id/web_view_info"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent">
+        app:layout_constraintTop_toTopOf="parent">
 
     </WebView>
 
@@ -25,11 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="14dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/white"
         android:clickable="true"
         android:src="@drawable/ic_baseline_save_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="save article" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

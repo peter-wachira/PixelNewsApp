@@ -9,3 +9,6 @@ class GetSavedNewsUseCase (private val newsRepository: NewsRepository) {
          return newsRepository.getSavedNews()
      }
 }
+
+
+
