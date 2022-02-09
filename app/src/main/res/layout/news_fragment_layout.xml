@@ -18,7 +18,7 @@
         android:drawableStart="@drawable/ic_logo"
         android:drawablePadding="8dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="Pixels"
+        android:text="@string/pixels"
         android:textColor="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         app:fontFamily="@font/roboto_medium"
         android:layout_marginStart="16dp"
-        android:text="News"
+        android:text="@string/news"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/materialTextView"
         app:layout_constraintStart_toEndOf="@+id/materialTextView"
@@ -61,6 +61,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:id="@+id/bannerContainer"
             android:layout_height="wrap_content">
 
             <com.google.android.material.textview.MaterialTextView
@@ -94,7 +95,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         app:fontFamily="@font/roboto"
-        android:text="News for you today"
+        android:text="@string/news_for_you_today"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardView" />

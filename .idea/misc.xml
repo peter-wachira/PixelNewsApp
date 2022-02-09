@@ -23,6 +23,11 @@
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/news_item_layout.xml" value="0.5" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/news_list_item.xml" value="0.33425925925925926" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/menu/bottom_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1595744680851064" />
+        <entry key="app/src/main/res/layout/fragment_info.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_saved.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/news_fragment_layout.xml" value="0.29789123535156253" />
       </map>
     </option>
   </component>

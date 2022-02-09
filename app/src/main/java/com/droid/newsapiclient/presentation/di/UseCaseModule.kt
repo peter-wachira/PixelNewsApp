@@ -21,13 +21,21 @@ class UseCaseModule {
     }
     @Singleton
     @Provides
-    fun provideGetSearchedNewsHeadlinesUseCaseModule(newsRepository: NewsRepository): GetSearchNewsUseCase{
+    fun provideGetSearchedNewsHeadlinesUseCaseModule(newsRepository: NewsRepository): GetSearchNewsUseCase {
         return GetSearchNewsUseCase(newsRepository)
     }
 
+    @Singleton
     @Provides
-    fun providesGetSavedNewsUseCaseModule(newsRepository: NewsRepository): SaveNewsUseCase{
+    fun providesSavedNewsUseCaseModule(newsRepository: NewsRepository): SaveNewsUseCase {
         return SaveNewsUseCase(newsRepository)
     }
+
+    @Singleton
+    @Provides
+    fun provideGetSavedNewsUseCaseModule(newsRepository: NewsRepository): GetSavedNewsUseCase {
+        return GetSavedNewsUseCase(newsRepository)
+    }
+
 }
 

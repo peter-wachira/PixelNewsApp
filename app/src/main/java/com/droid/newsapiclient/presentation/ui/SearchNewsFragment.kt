@@ -53,7 +53,7 @@ class SearchNewsFragment : Fragment() {
 
     private fun getBannerNews() {
         viewModel.searchNews("us", "covid", page)
-        viewModel.searchedNews.observe(viewLifecycleOwner, { response ->
+        viewModel.searchedNews.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Success -> {
                     Timber.e("response:  ${response.data}")
@@ -80,7 +80,7 @@ class SearchNewsFragment : Fragment() {
                     }
                 }
             }
-        })
+        }
 
     }
 
@@ -122,7 +122,7 @@ class SearchNewsFragment : Fragment() {
 
 
     fun viewSearchedNews() {
-        viewModel.searchedNews.observe(viewLifecycleOwner, { response ->
+        viewModel.searchedNews.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Success -> {
                     Timber.e("response:  ${response.data}")
@@ -149,7 +149,7 @@ class SearchNewsFragment : Fragment() {
                     }
                 }
             }
-        })
+        }
     }
 
 
@@ -176,7 +176,7 @@ class SearchNewsFragment : Fragment() {
 
     private fun viewNewsList() {
         viewModel.getNewsHeadLines(country, page)
-        viewModel.newsHeadLines.observe(viewLifecycleOwner, { response ->
+        viewModel.newsHeadLines.observe(viewLifecycleOwner) { response ->
             when (response) {
 
                 is Resource.Success -> {
@@ -215,7 +215,7 @@ class SearchNewsFragment : Fragment() {
                 }
 
             }
-        })
+        }
     }
 
 
