@@ -15,13 +15,11 @@
     <item
         android:id="@+id/savedFragment"
         android:icon="@drawable/ic_baseline_favorite_24"
-        android:title="Favorites"
-        />
+        android:title="Favorites" />
 
     <item
         android:id="@+id/userStatsFragment"
         android:icon="@drawable/ic_user_stats"
-        android:title="User Stats"
-        />
+        android:title="User Stats" />
 
 </menu>

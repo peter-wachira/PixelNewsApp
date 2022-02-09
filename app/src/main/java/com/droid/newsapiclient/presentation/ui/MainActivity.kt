@@ -32,18 +32,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment
         navController = navHostFragment.navController
         binding.bottomNaviagtion.setupWithNavController(navController)
-
-
-
-        viewModel = ViewModelProvider(this, factory)
-                .get(NewsViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory).get(NewsViewModel::class.java)
 
     }
-
-
 
 
 }

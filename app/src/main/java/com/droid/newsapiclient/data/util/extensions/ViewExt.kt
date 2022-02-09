@@ -4,18 +4,16 @@ package com.droid.newsapiclient.data.util.extensions
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.view.View
 import android.view.View.*
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.droid.newsapiclient.R
 import com.google.android.material.snackbar.Snackbar
 
 
 fun View.visible(isVisible: Boolean) {
-    visibility = if (isVisible) View.VISIBLE else View.GONE
+    visibility = if (isVisible) VISIBLE else GONE
 }
 
 fun View.show() {
@@ -41,13 +39,12 @@ fun View.disable() {
 fun View.showSnackbar(message: String, length: Int) {
     val snackbar = Snackbar.make(this, message, length)
     snackbar.apply {
-        setTextColor(ContextCompat.getColor(this.context, android.R.color.white))
-        this.setBackgroundTint(ContextCompat.getColor(context, R.color.colorPrimary))
+        setTextColor(ContextCompat.getColor(this.context, R.color.primaryTextColor))
+        this.setBackgroundTint(ContextCompat.getColor(context, R.color.primaryColor))
         show()
 
     }
 }
-
 
 
 fun View.showErrorSnackbar(message: String, length: Int) {
@@ -65,7 +62,7 @@ fun View.showSuccessSnackbar(message: String, length: Int) {
 
     snackbar.apply {
         this.setBackgroundTint(
-            ContextCompat.getColor(view.context, R.color.colorPrimary)
+            ContextCompat.getColor(view.context, R.color.primaryColor)
         )
         this.setTextColor(ContextCompat.getColor(this.context, android.R.color.white))
         show()

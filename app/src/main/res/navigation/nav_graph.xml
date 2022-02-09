@@ -43,7 +43,7 @@
         android:id="@+id/searchFragment"
         android:name="com.droid.newsapiclient.presentation.ui.SearchNewsFragment"
         android:label="fragment_search_news"
-        tools:layout="@layout/fragment_search_news" >
+        tools:layout="@layout/fragment_search_news">
         <action
             android:id="@+id/action_searchFragment_to_infoFragment"
             app:destination="@id/infoFragment" />

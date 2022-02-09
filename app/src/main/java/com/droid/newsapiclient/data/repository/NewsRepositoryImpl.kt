@@ -10,18 +10,24 @@ import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
 class NewsRepositoryImpl(
-        private val newsRemoteDataSource: NewsRemoteDataSource,
-        private val newsLocalDataSource: NewsLocalDataSource
+    private val newsRemoteDataSource: NewsRemoteDataSource,
+    private val newsLocalDataSource: NewsLocalDataSource
 
 ) : NewsRepository {
-    override suspend fun getNewsHeadlines(country: String,
-                                          page: Int): Resource<APIResponse> {
+    override suspend fun getNewsHeadlines(
+        country: String,
+        page: Int
+    ): Resource<APIResponse> {
         return responseToResource(newsRemoteDataSource.getTopHeadlines(country, page))
     }
 
-    override suspend fun getSearchedNews(country: String, searchQuery: String, page: Int): Resource<APIResponse> {
+    override suspend fun getSearchedNews(
+        country: String,
+        searchQuery: String,
+        page: Int
+    ): Resource<APIResponse> {
         return responseToResource(
-                newsRemoteDataSource.getSearchedTopHeadlines(country,searchQuery,page)
+            newsRemoteDataSource.getSearchedTopHeadlines(country, searchQuery, page)
         )
     }
 
@@ -41,10 +47,10 @@ class NewsRepositoryImpl(
     }
 
     override suspend fun deleteNews(article: Article) {
-        TODO("Not yet implemented")
+        newsLocalDataSource.deleteArticleFromDB(article)
     }
 
     override fun getSavedNews(): Flow<List<Article>> {
-        TODO("Not yet implemented")
+        return newsLocalDataSource.getSavedArticles()
     }
 }

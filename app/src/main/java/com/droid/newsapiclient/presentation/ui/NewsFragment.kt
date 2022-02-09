@@ -1,5 +1,6 @@
 package com.droid.newsapiclient.presentation.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,8 +31,8 @@ class NewsFragment : Fragment() {
     private var isLastPage = false
     private var pages = 0
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.news_fragment_layout, container, false)
@@ -60,22 +61,30 @@ class NewsFragment : Fragment() {
     }
 
 
-
-    private fun getBannerNews(){
+    @SuppressLint("SetTextI18n")
+    private fun getBannerNews() {
         viewModel.searchNews("us", "covid", page)
-        viewModel.searchedNews.observe(viewLifecycleOwner, { response ->
+        viewModel.searchedNews.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Success -> {
                     Timber.e("response:  ${response.data}")
                     hideProgressBar()
                     response.data?.let {
-                        if (it.articles.first().title?.isNotEmpty() == true){
-                            fragmentNewsBinding.materialTextView2.text =   "Covid -19 News: \n ${it.articles.first().title}"
-                            val bundle = Bundle().apply {
-                                putSerializable("selected_article", it.articles.first())
+                        val articleslist = it.articles
+                        if (articleslist.first().title?.isNotEmpty() == true) {
+                            fragmentNewsBinding.materialTextView2.text =
+                                    "Covid -19 News: \n ${articleslist.last().title}"
+                            fragmentNewsBinding.materialTextView2.setOnClickListener {
+                                val bundle = Bundle().apply {
+                                    putSerializable("selected_article", articleslist.last())
+                                }
+                                //pass bundle to info fragment
+                                findNavController().navigate(
+                                        R.id.action_newsFragment_to_infoFragment,
+                                        bundle
+                                )
+
                             }
-                            //pass bundle to info fragment
-                            findNavController().navigate(R.id.action_newsFragment_to_infoFragment, bundle)
                         }
                     }
                 }
@@ -87,46 +96,16 @@ class NewsFragment : Fragment() {
                         )
                     }
                 }
+                else -> {}
             }
-        })
+        }
 
     }
 
-
-    fun viewSearchedNews() {
-        viewModel.searchedNews.observe(viewLifecycleOwner, { response ->
-            when (response) {
-                is Resource.Success -> {
-                    Timber.e("response:  ${response.data}")
-                    hideProgressBar()
-                    response.data?.let {
-                        newsAdapter.differ.submitList(it.articles.toList())
-                        when {
-                            it.totalResults % 20 == 0 -> {
-                                pages = it.totalResults / 20
-                            }
-                            else -> {
-                                pages = it.totalResults / 20 + 1
-                            }
-                        }
-                        isLastPage = page == pages
-                    }
-                }
-                is Resource.Error -> {
-                    response.message.let {
-                        fragmentNewsBinding.root.showErrorSnackbar(
-                                "An error occurred : $it",
-                                Snackbar.LENGTH_LONG
-                        )
-                    }
-                }
-            }
-        })
-    }
 
     private fun viewNewsList() {
         viewModel.getNewsHeadLines(country, page)
-        viewModel.newsHeadLines.observe(viewLifecycleOwner, { response ->
+        viewModel.newsHeadLines.observe(viewLifecycleOwner) { response ->
             when (response) {
 
                 is Resource.Success -> {
@@ -135,18 +114,20 @@ class NewsFragment : Fragment() {
                     hideProgressBar()
                     response.data?.let {
                         newsAdapter.differ.submitList(it.articles.toList())
-                        when {
-                            it.totalResults % 20 == 0 -> {
-                                pages = it.totalResults / 20
+                        pages = when {
+                            it.totalResults % 30 == 0 -> {
+                                it.totalResults / 30
                             }
                             else -> {
-                                pages = it.totalResults / 20 + 1
+                                it.totalResults / 30 + 1
                             }
                         }
                         isLastPage = page == pages
                     }
                 }
-                is Error -> {
+
+
+                else -> {
                     hideProgressBar()
                     response.message?.let {
 
@@ -158,14 +139,8 @@ class NewsFragment : Fragment() {
                     }
 
                 }
-
-
-                is Resource.Loading -> {
-                    showProgressBar()
-                }
-
             }
-        })
+        }
     }
 
     private fun initRecyclerView() {
@@ -176,11 +151,6 @@ class NewsFragment : Fragment() {
             addOnScrollListener(this@NewsFragment.onScrollListener)
         }
 
-    }
-
-    private fun showProgressBar() {
-        isLoading = true
-        fragmentNewsBinding.progressBar.visibility = View.VISIBLE
     }
 
     private fun hideProgressBar() {

@@ -13,6 +13,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.MultiTransformation
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.droid.newsapiclient.R
 import com.droid.newsapiclient.data.util.Resource
 import com.droid.newsapiclient.data.util.extensions.convertToHoursMins
@@ -52,6 +55,7 @@ class SearchNewsFragment : Fragment() {
     }
 
     private fun getBannerNews() {
+        val transformation = MultiTransformation(CenterCrop(), RoundedCorners(15))
         viewModel.searchNews("us", "covid", page)
         viewModel.searchedNews.observe(viewLifecycleOwner, { response ->
             when (response) {
@@ -59,34 +63,52 @@ class SearchNewsFragment : Fragment() {
                     Timber.e("response:  ${response.data}")
                     hideProgressBar()
                     response.data?.let {
-                        if (it.articles.first() != null) {
-                            Glide.with(fragmentSearchNewsBinding.root.context)
-                                    .load(it.articles.first().urlToImage)
-                                    .into(fragmentSearchNewsBinding.imageView2)
-
-                            fragmentSearchNewsBinding.textView6.text = it.articles.first().publishedAt?.let { it1 -> convertToHoursMins(it1) }
-                            fragmentSearchNewsBinding.textView5.text = "${it.articles.first().title}"
-                            fragmentSearchNewsBinding.textView7.text = "${it.articles.first().source?.name}"
+                        Glide.with(fragmentSearchNewsBinding.root.context)
+                            .load(it.articles.last().urlToImage)
+                            .transform(transformation)
+                            .into(fragmentSearchNewsBinding.imageView2)
+                        val articleList = it.articles
+                        with(fragmentSearchNewsBinding) {
+                            textView6.text =
+                                articleList.last().publishedAt?.let { it1 -> convertToHoursMins(it1) }
+                            textView5.text =
+                                "${articleList.last().title}"
+                            textView7.text =
+                                "${articleList.last().source?.name}"
+                            imageView2.setOnClickListener {
+                                val bundle = Bundle().apply {
+                                    putSerializable("selected_article", articleList.last())
+                                }
+                                //pass bundle to info fragment
+                                findNavController().navigate(
+                                    R.id.action_searchFragment_to_infoFragment,
+                                    bundle
+                                )
+                            }
 
                         }
+
                     }
                 }
                 is Resource.Error -> {
                     response.message.let {
                         fragmentSearchNewsBinding.root.showErrorSnackbar(
-                                "An error occurred : $it",
-                                Snackbar.LENGTH_LONG
+                            "An error occurred : $it",
+                            Snackbar.LENGTH_LONG
                         )
                     }
                 }
+                else -> {}
             }
         })
 
     }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search_news, container, false)
     }
@@ -94,7 +116,8 @@ class SearchNewsFragment : Fragment() {
 
     //    search implementation
     private fun setSearchView() {
-        fragmentSearchNewsBinding.searchNews.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        fragmentSearchNewsBinding.searchNews.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 viewModel.searchNews("us", query.toString(), page)
                 viewSearchedNews()
@@ -143,11 +166,12 @@ class SearchNewsFragment : Fragment() {
                 is Resource.Error -> {
                     response.message.let {
                         fragmentSearchNewsBinding.root.showErrorSnackbar(
-                                "An error occurred : $it",
-                                Snackbar.LENGTH_LONG
+                            "An error occurred : $it",
+                            Snackbar.LENGTH_LONG
                         )
                     }
                 }
+                else -> {}
             }
         })
     }
@@ -196,24 +220,20 @@ class SearchNewsFragment : Fragment() {
                         isLastPage = page == pages
                     }
                 }
-                is Error -> {
+
+
+                else -> {
                     hideProgressBar()
                     response.message?.let {
 
                         fragmentSearchNewsBinding.root.showErrorSnackbar(
-                                "An error occurred : $it",
-                                Snackbar.LENGTH_LONG
+                            "An error occurred : $it",
+                            Snackbar.LENGTH_LONG
                         )
 
                     }
 
                 }
-
-
-                is Resource.Loading -> {
-                    showProgressBar()
-                }
-
             }
         })
     }
@@ -230,7 +250,8 @@ class SearchNewsFragment : Fragment() {
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
-            val layoutManager = fragmentSearchNewsBinding.rvNews.layoutManager as LinearLayoutManager
+            val layoutManager =
+                fragmentSearchNewsBinding.rvNews.layoutManager as LinearLayoutManager
             val sizeOfTheCurrentList = layoutManager.itemCount
             val visibleItems = layoutManager.childCount
             val topPosition = layoutManager.findFirstVisibleItemPosition()
