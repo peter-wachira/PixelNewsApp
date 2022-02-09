@@ -1,10 +1,7 @@
 package com.droid.newsapiclient.presentation.di
 
 import android.app.Application
-import com.droid.newsapiclient.domain.usecase.GetNewsHeadlinesUseCase
-import com.droid.newsapiclient.domain.usecase.GetSavedNewsUseCase
-import com.droid.newsapiclient.domain.usecase.GetSearchNewsUseCase
-import com.droid.newsapiclient.domain.usecase.SaveNewsUseCase
+import com.droid.newsapiclient.domain.usecase.*
 import com.droid.newsapiclient.presentation.viewmodel.NewsViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -18,18 +15,20 @@ class FactoryModule {
     @Singleton
     @Provides
     fun provideNewsViewModelFactory(
-        application: Application,
-        getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
-        getSearchNewsUseCase: GetSearchNewsUseCase,
-        saveNewsUseCase: SaveNewsUseCase,
-        getSavedNewsUseCase: GetSavedNewsUseCase
+            application: Application,
+            getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
+            getSearchNewsUseCase: GetSearchNewsUseCase,
+            saveNewsUseCase: SaveNewsUseCase,
+            getSavedNewsUseCase: GetSavedNewsUseCase,
+            deleteSavedNewsUseCase: DeleteSavedNewsUseCase
     ): NewsViewModelFactory {
         return NewsViewModelFactory(
-            application,
-            getNewsHeadlinesUseCase,
-            getSearchNewsUseCase,
-            saveNewsUseCase,
-            getSavedNewsUseCase
+                application,
+                getNewsHeadlinesUseCase,
+                getSearchNewsUseCase,
+                saveNewsUseCase,
+                getSavedNewsUseCase,
+                deleteSavedNewsUseCase
         )
 
     }

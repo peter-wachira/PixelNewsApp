@@ -5,14 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.droid.newsapiclient.R
 import com.droid.newsapiclient.databinding.FragmentSavedBinding
 import com.droid.newsapiclient.presentation.adapter.NewsAdapter
 import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
+import com.google.android.material.snackbar.Snackbar
 
 
 class SavedFragment : Fragment() {
@@ -56,10 +59,39 @@ class SavedFragment : Fragment() {
     }
 
     private fun viewSavedNews() {
-        viewModel.getSavedNews().observe(viewLifecycleOwner, {
+        viewModel.getSavedNews().observe(viewLifecycleOwner) {
             newsAdapter.differ.submitList(it)
-        })
+        }
     }
+
+    private val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+    ) {
+        override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
+            return true
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            val position = viewHolder.adapterPosition
+            val article = newsAdapter.differ.currentList[position]
+            viewModel.deleteArticle(article)
+            view?.let {
+                Snackbar.make(it, "Article was Deleted Successfully", Snackbar.LENGTH_LONG).apply {
+                    setAction("Undo") {
+                        viewModel.saveArticle(article)
+                    }
+                    setBackgroundTint(ContextCompat.getColor(this.context, android.R.color.holo_blue_bright))
+                    val colorWhite = ContextCompat.getColor(this.context, android.R.color.white)
+                    this.setTextColor(colorWhite)
+                    this.setActionTextColor(colorWhite)
+                    show()
+                }
+            }
+        }
+
+    }
+
 
     private fun initRecyclerView() {
         binding.rvSavedNews.apply {
@@ -67,6 +99,8 @@ class SavedFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             addOnScrollListener(this@SavedFragment.onScrollListener)
         }
+
+        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(binding.rvSavedNews)
     }
 
     private val onScrollListener = object : RecyclerView.OnScrollListener() {
