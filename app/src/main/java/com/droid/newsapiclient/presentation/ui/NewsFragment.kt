@@ -64,7 +64,7 @@ class NewsFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun getBannerNews() {
         viewModel.searchNews("us", "covid", page)
-        viewModel.searchedNews.observe(viewLifecycleOwner, { response ->
+        viewModel.searchedNews.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is Resource.Success -> {
                     Timber.e("response:  ${response.data}")
@@ -73,15 +73,15 @@ class NewsFragment : Fragment() {
                         val articleslist = it.articles
                         if (articleslist.first().title?.isNotEmpty() == true) {
                             fragmentNewsBinding.materialTextView2.text =
-                                "Covid -19 News: \n ${articleslist.last().title}"
+                                    "Covid -19 News: \n ${articleslist.last().title}"
                             fragmentNewsBinding.materialTextView2.setOnClickListener {
                                 val bundle = Bundle().apply {
                                     putSerializable("selected_article", articleslist.last())
                                 }
                                 //pass bundle to info fragment
                                 findNavController().navigate(
-                                    R.id.action_newsFragment_to_infoFragment,
-                                    bundle
+                                        R.id.action_newsFragment_to_infoFragment,
+                                        bundle
                                 )
 
                             }
@@ -91,21 +91,21 @@ class NewsFragment : Fragment() {
                 is Resource.Error -> {
                     response.message.let {
                         fragmentNewsBinding.root.showErrorSnackbar(
-                            "An error occurred : $it",
-                            Snackbar.LENGTH_LONG
+                                "An error occurred : $it",
+                                Snackbar.LENGTH_LONG
                         )
                     }
                 }
                 else -> {}
             }
-        })
+        }
 
     }
 
 
     private fun viewNewsList() {
         viewModel.getNewsHeadLines(country, page)
-        viewModel.newsHeadLines.observe(viewLifecycleOwner, { response ->
+        viewModel.newsHeadLines.observe(viewLifecycleOwner) { response ->
             when (response) {
 
                 is Resource.Success -> {
@@ -115,11 +115,11 @@ class NewsFragment : Fragment() {
                     response.data?.let {
                         newsAdapter.differ.submitList(it.articles.toList())
                         pages = when {
-                            it.totalResults % 20 == 0 -> {
-                                it.totalResults / 20
+                            it.totalResults % 30 == 0 -> {
+                                it.totalResults / 30
                             }
                             else -> {
-                                it.totalResults / 20 + 1
+                                it.totalResults / 30 + 1
                             }
                         }
                         isLastPage = page == pages
@@ -132,15 +132,15 @@ class NewsFragment : Fragment() {
                     response.message?.let {
 
                         fragmentNewsBinding.root.showErrorSnackbar(
-                            "An error occurred : $it",
-                            Snackbar.LENGTH_LONG
+                                "An error occurred : $it",
+                                Snackbar.LENGTH_LONG
                         )
 
                     }
 
                 }
             }
-        })
+        }
     }
 
     private fun initRecyclerView() {

@@ -5,27 +5,30 @@
       <map>
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/background_bottom_sheet.xml" value="0.29259259259259257" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/background_item.xml" value="0.20555555555555555" />
-        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/circle_background.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/circular_image_background.xml" value="0.29259259259259257" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/circular_primary_image_background.xml" value="0.3697916666666667" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/curved_outline.xml" value="0.3854166666666667" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/dotted_square.xml" value="0.3854166666666667" />
-        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/ic_baseline_save_24.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.3697916666666667" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/ic_logo.xml" value="0.3854166666666667" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/rectange_radius_corners.xml" value="0.3854166666666667" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/search_icon.xml" value="0.3854166666666667" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/splash_background.xml" value="0.20555555555555555" />
-        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/drawable/text_circular_blue.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/fragment_info.xml" value="0.27877237851662406" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/fragment_news.xml" value="0.20625" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/fragment_saved.xml" value="0.2898550724637681" />
-        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/fragment_search_news.xml" value="0.25" />
-        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/news_fragment_layout.xml" value="0.29404309252217997" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/fragment_search_news.xml" value="0.28695652173913044" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/news_fragment_layout.xml" value="0.33" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/news_item_layout.xml" value="0.5" />
-        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/news_list_item.xml" value="0.25" />
+        <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/layout/news_list_item.xml" value="0.33425925925925926" />
         <entry key="..\:/Users/peter/AndroidStudioProjects/newsapiclient/app/src/main/res/menu/bottom_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1595744680851064" />
+        <entry key="app/src/main/res/layout/fragment_info.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_news.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_saved.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_search_news.xml" value="0.27848101265822783" />
+        <entry key="app/src/main/res/layout/news_fragment_layout.xml" value="0.1" />
       </map>
     </option>
   </component>
