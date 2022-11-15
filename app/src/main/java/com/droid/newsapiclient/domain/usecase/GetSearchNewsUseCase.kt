@@ -8,5 +8,4 @@ class GetSearchNewsUseCase(private val newsRepository: NewsRepository) {
     suspend fun execute(country: String, searchQuery: String, page: Int): Resource<APIResponse> {
         return newsRepository.getSearchedNews(country, searchQuery, page)
     }
-
 }

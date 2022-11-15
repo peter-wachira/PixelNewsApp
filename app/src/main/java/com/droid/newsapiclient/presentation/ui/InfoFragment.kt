@@ -13,7 +13,6 @@ import com.droid.newsapiclient.databinding.FragmentInfoBinding
 import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 
-
 class InfoFragment : Fragment() {
 
     private lateinit var binding: FragmentInfoBinding
@@ -28,14 +27,13 @@ class InfoFragment : Fragment() {
     }
 
     private fun initlistener() {
-
     }
 
     private fun getInfoFragmentArgs() {
         val args: InfoFragmentArgs by navArgs()
         val article = args.selectedArticle
         viewModel = (activity as MainActivity).viewModel
-        //display article in web view
+        // display article in web view
         binding.webViewInfo.apply {
             webViewClient = WebViewClient()
             if (article.url != null) {
@@ -50,11 +48,11 @@ class InfoFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_info, container, false)
     }
-
 }

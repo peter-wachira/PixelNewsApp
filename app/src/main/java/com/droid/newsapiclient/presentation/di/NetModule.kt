@@ -1,6 +1,5 @@
 package com.droid.newsapiclient.presentation.di
 
-
 import com.droid.newsapiclient.BuildConfig
 import com.droid.newsapiclient.data.api.NewsAPIService
 import dagger.Module
@@ -10,7 +9,6 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
-
 
 @InstallIn(SingletonComponent::class)
 @Module

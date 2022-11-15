@@ -4,7 +4,6 @@ import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 internal fun convertToDateAndTime(currentTime: Long): String {
     Timber.d("convertTimeStamp: $currentTime")
 
@@ -13,9 +12,7 @@ internal fun convertToDateAndTime(currentTime: Long): String {
     return dateFormat.format(Date(currentTime))
 }
 
-
 fun convertTimeStamp(currentTime: Long): String {
-
 //    2020-05-27
     Timber.d("convertTimeStamp: $currentTime")
 
@@ -24,9 +21,8 @@ fun convertTimeStamp(currentTime: Long): String {
     return dateFormat.format(Date(currentTime))
 }
 
-
 fun utcTODate(time: String): String {
-    //2021-04-03T19:15:29.3266667
+    // 2021-04-03T19:15:29.3266667
     val epoch: Long
 
     val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
@@ -37,16 +33,14 @@ fun utcTODate(time: String): String {
 }
 
 fun utcToDateTime(time: String): String {
-    //2021-04-03T19:15:29.3266667
+    // 2021-04-03T19:15:29.3266667
     val epoch: Long?
     val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())
     epoch = (dateFormat.parse(time)).time / 1000
     val simpleDateFormat = SimpleDateFormat("dd MMM, yyyy 'at' HH:mm aa", Locale.getDefault())
     val date = Date(epoch * 1000)
     return simpleDateFormat.format(date)
-
 }
-
 
 fun nowToHrsMins(): String {
     val now = System.currentTimeMillis()
@@ -55,7 +49,6 @@ fun nowToHrsMins(): String {
 
     return dateFormat.format(Date(now))
 }
-
 
 fun timePublished(time: String): Int {
     val re = Regex("[^A-Za-z0-9 ]")
@@ -70,9 +63,7 @@ fun timePublished(time: String): Int {
     Timber.e("timeDifference:$timeDifference")
 
     return timeDifference
-
 }
-
 
 fun utcToDateOnly(time: String): String {
     val dateFormatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault())

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
 
-    //get from API
+    // get from API
     suspend fun getNewsHeadlines(country: String, page: Int): Resource<APIResponse>
     suspend fun getSearchedNews(
         country: String,

@@ -17,7 +17,6 @@ import com.droid.newsapiclient.presentation.adapter.NewsAdapter
 import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 
-
 class SavedFragment : Fragment() {
     private val binding: FragmentSavedBinding by lazy {
         FragmentSavedBinding.inflate(layoutInflater)
@@ -31,17 +30,15 @@ class SavedFragment : Fragment() {
     private var pages = 0
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ) = binding.root
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as MainActivity).viewModel
         newsAdapter = (activity as MainActivity).newsAdapter
-
-
 
         viewArticleDetails()
         initRecyclerView()
@@ -53,7 +50,7 @@ class SavedFragment : Fragment() {
             val bundle = Bundle().apply {
                 putSerializable("selected_article", it)
             }
-            //pass bundle to info fragment
+            // pass bundle to info fragment
             findNavController().navigate(R.id.action_newsFragment_to_infoFragment, bundle)
         }
     }
@@ -65,8 +62,8 @@ class SavedFragment : Fragment() {
     }
 
     private val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
-            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+        ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
     ) {
         override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
             return true
@@ -89,9 +86,7 @@ class SavedFragment : Fragment() {
                 }
             }
         }
-
     }
-
 
     private fun initRecyclerView() {
         binding.rvSavedNews.apply {
@@ -109,7 +104,6 @@ class SavedFragment : Fragment() {
             if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
                 isScrolling = true
             }
-
         }
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -128,6 +122,4 @@ class SavedFragment : Fragment() {
             }
         }
     }
-
-
 }

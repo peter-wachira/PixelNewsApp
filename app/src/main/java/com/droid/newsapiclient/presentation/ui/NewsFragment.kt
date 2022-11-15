@@ -19,7 +19,6 @@ import com.droid.newsapiclient.presentation.viewmodel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 
-
 class NewsFragment : Fragment() {
     private lateinit var viewModel: NewsViewModel
     private lateinit var newsAdapter: NewsAdapter
@@ -31,7 +30,8 @@ class NewsFragment : Fragment() {
     private var isLastPage = false
     private var pages = 0
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -55,11 +55,10 @@ class NewsFragment : Fragment() {
             val bundle = Bundle().apply {
                 putSerializable("selected_article", it)
             }
-            //pass bundle to info fragment
+            // pass bundle to info fragment
             findNavController().navigate(R.id.action_newsFragment_to_infoFragment, bundle)
         }
     }
-
 
     @SuppressLint("SetTextI18n")
     private fun getBannerNews() {
@@ -73,17 +72,16 @@ class NewsFragment : Fragment() {
                         val articleslist = it.articles
                         if (articleslist.first().title?.isNotEmpty() == true) {
                             fragmentNewsBinding.materialTextView2.text =
-                                    "Covid -19 News: \n ${articleslist.last().title}"
+                                "Covid -19 News: \n ${articleslist.last().title}"
                             fragmentNewsBinding.materialTextView2.setOnClickListener {
                                 val bundle = Bundle().apply {
                                     putSerializable("selected_article", articleslist.last())
                                 }
-                                //pass bundle to info fragment
+                                // pass bundle to info fragment
                                 findNavController().navigate(
-                                        R.id.action_newsFragment_to_infoFragment,
-                                        bundle
+                                    R.id.action_newsFragment_to_infoFragment,
+                                    bundle
                                 )
-
                             }
                         }
                     }
@@ -91,23 +89,20 @@ class NewsFragment : Fragment() {
                 is Resource.Error -> {
                     response.message.let {
                         fragmentNewsBinding.root.showErrorSnackbar(
-                                "An error occurred : $it",
-                                Snackbar.LENGTH_LONG
+                            "An error occurred : $it",
+                            Snackbar.LENGTH_LONG
                         )
                     }
                 }
                 else -> {}
             }
         }
-
     }
-
 
     private fun viewNewsList() {
         viewModel.getNewsHeadLines(country, page)
         viewModel.newsHeadLines.observe(viewLifecycleOwner) { response ->
             when (response) {
-
                 is Resource.Success -> {
                     Timber.e("response:  ${response.data}")
 
@@ -126,18 +121,14 @@ class NewsFragment : Fragment() {
                     }
                 }
 
-
                 else -> {
                     hideProgressBar()
                     response.message?.let {
-
                         fragmentNewsBinding.root.showErrorSnackbar(
-                                "An error occurred : $it",
-                                Snackbar.LENGTH_LONG
+                            "An error occurred : $it",
+                            Snackbar.LENGTH_LONG
                         )
-
                     }
-
                 }
             }
         }
@@ -150,7 +141,6 @@ class NewsFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             addOnScrollListener(this@NewsFragment.onScrollListener)
         }
-
     }
 
     private fun hideProgressBar() {
@@ -164,7 +154,6 @@ class NewsFragment : Fragment() {
             if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
                 isScrolling = true
             }
-
         }
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -180,13 +169,7 @@ class NewsFragment : Fragment() {
                 page++
                 viewModel.getNewsHeadLines(country, page)
                 isScrolling = false
-
             }
-
-
         }
     }
-
 }
-
-

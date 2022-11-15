@@ -18,12 +18,12 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class NewsViewModel(
-        private val app: Application,
-        private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
-        private val getSearchNewsUseCase: GetSearchNewsUseCase,
-        private val saveNewsUseCase: SaveNewsUseCase,
-        private val getSavedNewsUseCase: GetSavedNewsUseCase,
-        private val deleteSavedNewsUseCase: DeleteSavedNewsUseCase
+    private val app: Application,
+    private val getNewsHeadlinesUseCase: GetNewsHeadlinesUseCase,
+    private val getSearchNewsUseCase: GetSearchNewsUseCase,
+    private val saveNewsUseCase: SaveNewsUseCase,
+    private val getSavedNewsUseCase: GetSavedNewsUseCase,
+    private val deleteSavedNewsUseCase: DeleteSavedNewsUseCase
 ) : AndroidViewModel(app) {
     val newsHeadLines: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
@@ -31,20 +31,17 @@ class NewsViewModel(
         newsHeadLines.postValue(Resource.Loading())
         try {
             if (isNetworkAvailable(app)) {
-
                 val apiResult = getNewsHeadlinesUseCase.execute(country, page)
                 newsHeadLines.postValue(apiResult)
             } else {
                 newsHeadLines.postValue(Resource.Error("Internet is not available"))
             }
-
         } catch (e: Exception) {
             newsHeadLines.postValue(Resource.Error(e.message.toString()))
         }
-
     }
 
-    //Search news implementation
+    // Search news implementation
     val searchedNews: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
     fun searchNews(
@@ -65,14 +62,13 @@ class NewsViewModel(
         }
     }
 
-
     fun getSavedNews() = liveData {
         getSavedNewsUseCase.execute().collect {
             emit(it)
         }
     }
 
-    //local data
+    // local data
     fun saveArticle(article: Article) = viewModelScope.launch {
         saveNewsUseCase.execute(article)
     }
@@ -84,10 +80,10 @@ class NewsViewModel(
     private fun isNetworkAvailable(context: Context?): Boolean {
         if (context == null) return false
         val connectivityManager =
-                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             val capabilities =
-                    connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
             if (capabilities != null) {
                 when {
                     capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
@@ -108,6 +104,5 @@ class NewsViewModel(
             }
         }
         return false
-
     }
 }

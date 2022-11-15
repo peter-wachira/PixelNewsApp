@@ -14,7 +14,6 @@ import com.droid.newsapiclient.presentation.viewmodel.NewsViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     @Inject
@@ -31,14 +30,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment
         navController = navHostFragment.navController
         binding.bottomNaviagtion.setupWithNavController(navController)
         viewModel = ViewModelProvider(this, factory).get(NewsViewModel::class.java)
-
     }
-
-
 }

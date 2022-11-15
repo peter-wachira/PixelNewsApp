@@ -1,6 +1,5 @@
 package com.droid.newsapiclient.data.util.extensions
 
-
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -10,7 +9,6 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import com.droid.newsapiclient.R
 import com.google.android.material.snackbar.Snackbar
-
 
 fun View.visible(isVisible: Boolean) {
     visibility = if (isVisible) VISIBLE else GONE
@@ -42,10 +40,8 @@ fun View.showSnackbar(message: String, length: Int) {
         setTextColor(ContextCompat.getColor(this.context, R.color.primaryTextColor))
         this.setBackgroundTint(ContextCompat.getColor(context, R.color.primaryColor))
         show()
-
     }
 }
-
 
 fun View.showErrorSnackbar(message: String, length: Int) {
     val snackbar = Snackbar.make(this, message, length)
@@ -92,7 +88,6 @@ fun View.showRetrySnackBar(message: String, action: ((View) -> Unit)?) {
             action?.invoke(this@showRetrySnackBar)
         }
         show()
-
     }
 }
 
@@ -100,7 +95,6 @@ internal inline fun <reified T> Activity.navigateTo(
     clearTask: Boolean = false,
     noinline intentExtras: ((Intent) -> Unit)? = null
 ) {
-
     val intent = Intent(this, T::class.java)
 
     intentExtras?.run {

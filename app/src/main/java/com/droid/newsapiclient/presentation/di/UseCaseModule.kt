@@ -38,5 +38,3 @@ class UseCaseModule {
         return DeleteSavedNewsUseCase(newsRepository)
     }
 }
-
-

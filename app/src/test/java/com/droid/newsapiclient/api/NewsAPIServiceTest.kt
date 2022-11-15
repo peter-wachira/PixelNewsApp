@@ -21,10 +21,10 @@ class NewsAPIServiceTest {
     fun setUp() {
         server = MockWebServer()
         service = Retrofit.Builder()
-                .baseUrl(server.url(""))
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(NewsAPIService::class.java)
+            .baseUrl(server.url(""))
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(NewsAPIService::class.java)
     }
 
     @After
@@ -33,16 +33,14 @@ class NewsAPIServiceTest {
     }
 
     private fun enqueueMockResponse(
-            fileName: String
+        fileName: String
     ) {
         val inputStream = javaClass.classLoader!!.getResourceAsStream(fileName)
         val source = inputStream.source().buffer()
         val mockResponse = MockResponse()
         mockResponse.setBody(source.readString(Charsets.UTF_8))
         server.enqueue(mockResponse)
-
     }
-
 
     @Test
     fun getTopHeadlines_sentRequest_receivedExpected() {
@@ -63,7 +61,6 @@ class NewsAPIServiceTest {
             val responseBody = service.getTopHeadlines("us", 1).body()
             val articleList = responseBody!!.articles
             assertThat(articleList.size).isEqualTo(20)
-
         }
     }
 
@@ -79,6 +76,4 @@ class NewsAPIServiceTest {
             assertThat(article.publishedAt).isEqualTo("2021-09-01T07:30:00Z")
         }
     }
-
-
 }

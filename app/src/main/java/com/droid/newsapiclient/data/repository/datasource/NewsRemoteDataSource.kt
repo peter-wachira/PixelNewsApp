@@ -10,5 +10,4 @@ interface NewsRemoteDataSource {
         searchQuery: String,
         page: Int
     ): Response<APIResponse>
-
 }

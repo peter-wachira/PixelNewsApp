@@ -1,6 +1,5 @@
 package com.droid.newsapiclient.presentation.adapter
 
-
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -21,7 +20,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(article: Article) {
             with(binding) {
-
                 textView8.text = article.title
                 textView6.text = article.publishedAt?.let { convertToHoursMins(it) }
                 textView7.text = article.source?.name
@@ -34,10 +32,8 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
                     onItemClickListener?.let { it(article) }
                 }
             }
-
         }
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val view = NewsItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -49,7 +45,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
         holder.bind(article)
     }
 
-
     private val diffUtil = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.url == newItem.url
@@ -58,7 +53,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem == newItem
         }
-
     }
 
     val differ = AsyncListDiffer(this, diffUtil)
@@ -66,19 +60,9 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
         return differ.currentList.size
     }
 
-
     private var onItemClickListener: ((Article) -> Unit)? = null
 
     fun setOnItemClickListener(listener: (Article) -> Unit) {
         onItemClickListener = listener
     }
-
 }
-
-
-
-
-
-
-
-

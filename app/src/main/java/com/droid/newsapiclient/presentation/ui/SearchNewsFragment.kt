@@ -1,6 +1,5 @@
 package com.droid.newsapiclient.presentation.ui
 
-
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -79,15 +78,13 @@ class SearchNewsFragment : Fragment() {
                                 val bundle = Bundle().apply {
                                     putSerializable("selected_article", articleList.last())
                                 }
-                                //pass bundle to info fragment
+                                // pass bundle to info fragment
                                 findNavController().navigate(
                                     R.id.action_searchFragment_to_infoFragment,
                                     bundle
                                 )
                             }
-
                         }
-
                     }
                 }
                 is Resource.Error -> {
@@ -101,48 +98,44 @@ class SearchNewsFragment : Fragment() {
                 else -> {}
             }
         })
-
     }
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search_news, container, false)
     }
 
-
     //    search implementation
     private fun setSearchView() {
         fragmentSearchNewsBinding.searchNews.setOnQueryTextListener(object :
-            SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.searchNews("us", query.toString(), page)
-                viewSearchedNews()
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                MainScope().launch {
-                    delay(3000)
+                SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    viewModel.searchNews("us", query.toString(), page)
+                    viewSearchedNews()
+                    return false
                 }
-                viewModel.searchNews("us", newText.toString(), page)
-                viewSearchedNews()
-                return false
-            }
-        })
 
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    MainScope().launch {
+                        delay(3000)
+                    }
+                    viewModel.searchNews("us", newText.toString(), page)
+                    viewSearchedNews()
+                    return false
+                }
+            })
 
-        //reset search after close
+        // reset search after close
         fragmentSearchNewsBinding.searchNews.setOnCloseListener {
             initRecyclerView()
             viewNewsList()
             false
         }
     }
-
 
     fun viewSearchedNews() {
         viewModel.searchedNews.observe(viewLifecycleOwner, { response ->
@@ -176,17 +169,15 @@ class SearchNewsFragment : Fragment() {
         })
     }
 
-
     private fun viewArticleDetails() {
         newsAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
                 putSerializable("selected_article", it)
             }
-            //pass bundle to info fragment
+            // pass bundle to info fragment
             findNavController().navigate(R.id.action_searchFragment_to_infoFragment, bundle)
         }
     }
-
 
     private fun initRecyclerView() {
         // newsAdapter = NewsAdapter()
@@ -195,14 +186,12 @@ class SearchNewsFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             addOnScrollListener(this@SearchNewsFragment.onScrollListener)
         }
-
     }
 
     private fun viewNewsList() {
         viewModel.getNewsHeadLines(country, page)
         viewModel.newsHeadLines.observe(viewLifecycleOwner, { response ->
             when (response) {
-
                 is Resource.Success -> {
                     Timber.e("response:  ${response.data}")
 
@@ -221,23 +210,18 @@ class SearchNewsFragment : Fragment() {
                     }
                 }
 
-
                 else -> {
                     hideProgressBar()
                     response.message?.let {
-
                         fragmentSearchNewsBinding.root.showErrorSnackbar(
                             "An error occurred : $it",
                             Snackbar.LENGTH_LONG
                         )
-
                     }
-
                 }
             }
         })
     }
-
 
     private val onScrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -245,7 +229,6 @@ class SearchNewsFragment : Fragment() {
             if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
                 isScrolling = true
             }
-
         }
 
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -262,13 +245,9 @@ class SearchNewsFragment : Fragment() {
                 page++
                 viewModel.getNewsHeadLines(country, page)
                 isScrolling = false
-
             }
-
-
         }
     }
-
 
     private fun showProgressBar() {
         isLoading = true
@@ -279,5 +258,4 @@ class SearchNewsFragment : Fragment() {
         isLoading = false
         fragmentSearchNewsBinding.progressBar.visibility = View.INVISIBLE
     }
-
 }

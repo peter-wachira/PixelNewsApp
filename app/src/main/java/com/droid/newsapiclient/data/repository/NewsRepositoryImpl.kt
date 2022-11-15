@@ -41,7 +41,6 @@ class NewsRepositoryImpl(
         return Resource.Error(response.message())
     }
 
-
     override suspend fun saveNews(article: Article) {
         newsLocalDataSource.saveArticleToDB(article)
     }
